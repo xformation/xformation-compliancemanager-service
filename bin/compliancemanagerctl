@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+
+CMD=$1
+NOHUP=${NOHUP:=$(which nohup)}
+PS=${PS:=$(which ps)}
+
+# default java
+JAVA_CMD=${JAVA_CMD:=$(which java)}
+
+get_pid() {
+    cat "${COMPLIANCEMANAGER_PID}" 2> /dev/null
+}
+
+pid_running() {
+    kill -0 $1 2> /dev/null
+}
+
+die() {
+    echo $*
+    exit 1
+}
+
+if [ -n "$JAVA_HOME" ]
+then
+    # try to use $JAVA_HOME
+    if [ -x "$JAVA_HOME"/bin/java ]
+    then
+        JAVA_CMD="$JAVA_HOME"/bin/java
+    else
+        die "$JAVA_HOME"/bin/java is not executable
+    fi
+fi
+
+# resolve links - $0 may be a softlink
+COMPLIANCEMANAGERCTL="$0"
+
+while [ -h "$COMPLIANCEMANAGERCTL" ]; do
+    ls=$(ls -ld "$COMPLIANCEMANAGERCTL")
+    link=$(expr "$ls" : '.*-> \(.*\)$')
+    if expr "$link" : '/.*' > /dev/null; then
+        COMPLIANCEMANAGERCTL="$link"
+    else
+        COMPLIANCEMANAGERCTL=$(dirname "$COMPLIANCEMANAGERCTL")/"$link"
+    fi
+done
+
+# take variables from environment if set
+COMPLIANCEMANAGERCTL_DIR=${COMPLIANCEMANAGERCTL_DIR:=$(dirname "$COMPLIANCEMANAGERCTL")}
+COMPLIANCEMANAGER_SERVER_JAR=${COMPLIANCEMANAGER_SERVER_JAR:=compliancemanager.jar}
+COMPLIANCEMANAGER_CONF=${COMPLIANCEMANAGER_CONF:=/opt/compliancemanager/server.conf}
+COMPLIANCEMANAGER_PID=${COMPLIANCEMANAGER_PID:=/opt/compliancemanager/compliancemanager.pid}
+LOG_FILE=${LOG_FILE:=log/compliancemanager-server.log}
+LOG4J=${LOG4J:=}
+DEFAULT_JAVA_OPTS="-Djava.library.path=${COMPLIANCEMANAGERCTL_DIR}/../lib/sigar -Djdk.tls.acknowledgeCloseNotify=true -Xms1g -Xmx1g -XX:NewRatio=1 -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:-OmitStackTraceInFastThrow"
+if $JAVA_CMD -XX:+PrintFlagsFinal 2>&1 |grep -q UseParNewGC; then
+	DEFAULT_JAVA_OPTS="${DEFAULT_JAVA_OPTS} -XX:+UseParNewGC"
+fi
+JAVA_OPTS="${JAVA_OPTS:="$DEFAULT_JAVA_OPTS"}"
+
+start() {
+    echo "Starting compliancemanager-server ..."
+    cd "$COMPLIANCEMANAGERCTL_DIR/.."
+    "${NOHUP}" "${JAVA_CMD}" ${JAVA_OPTS} ${LOG4J} -jar "${COMPLIANCEMANAGER_SERVER_JAR}" server -f "${COMPLIANCEMANAGER_CONF}" -p "${COMPLIANCEMANAGER_PID}" >> "${LOG_FILE}" 2>> "${LOG_FILE}" &
+}
+
+run() {
+    echo "Running compliancemanager-server ..."
+    cd "$COMPLIANCEMANAGERCTL_DIR/.."
+    exec "${JAVA_CMD}" ${JAVA_OPTS} ${LOG4J} -jar "${COMPLIANCEMANAGER_SERVER_JAR}" server -f "${COMPLIANCEMANAGER_CONF}" -p "${COMPLIANCEMANAGER_PID}"
+}
+
+stop() {
+    if [ ! -f "${COMPLIANCEMANAGER_PID}" ]; then
+      die "Not stopping. PID file not found: ${COMPLIANCEMANAGER_PID}"
+    fi
+
+    PID=$(get_pid)
+
+    echo "Stopping compliancemanager-server ($PID) ..."
+    echo "Waiting for compliancemanager-server to halt."
+
+    kill $PID
+
+    while "$PS" -p $PID > /dev/null; do sleep 1; done;
+    rm -f "${COMPLIANCEMANAGER_PID}"
+
+    echo "compliancemanager-server stopped"
+}
+
+restart() {
+    echo "Restarting compliancemanager-server ..."
+    stop
+    start
+}
+
+status() {
+    PID=$(get_pid)
+    if [ ! -z $PID ]; then
+        if pid_running $PID; then
+            echo "compliancemanager-server running with PID ${PID}"
+            return 0
+        else
+            rm "${COMPLIANCEMANAGER_PID}"
+            die "Removed stale PID file ${COMPLIANCEMANAGER_PID} with ${PID}."
+        fi
+    fi
+
+    die "compliancemanager-server not running"
+}
+
+case "$CMD" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    status)
+        status
+        ;;
+    run)
+        run
+        ;;
+    *)
+        echo "Usage $0 {start|stop|restart|status|run}"
+esac

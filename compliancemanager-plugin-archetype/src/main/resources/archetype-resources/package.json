@@ -1,0 +1,25 @@
+{
+  "name": "${pluginClassName}",
+  "version": "${version}",
+  "description": "",
+  
+  "scripts": {
+    "build": "webpack",
+    "lint": "eslint src",
+    "lint:path": "eslint",
+    "test": "jest"
+  },
+  "keywords": [
+    "compliancemanager"
+  ],
+  "author": "${ownerName} <${ownerEmail}>",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": "compliancemanager"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "compliancemanager-web-plugin": "file:${serverCheckoutPath}/compliancemanager-web-interface/packages/compliancemanager-web-plugin"
+  }
+}

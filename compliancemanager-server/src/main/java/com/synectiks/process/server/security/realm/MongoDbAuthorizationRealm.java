@@ -1,0 +1,146 @@
+/*
+ * */
+package com.synectiks.process.server.security.realm;
+
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import com.synectiks.process.common.grn.GRN;
+import com.synectiks.process.common.grn.GRNRegistry;
+import com.synectiks.process.common.grn.GRNTypes;
+import com.synectiks.process.common.security.PermissionAndRoleResolver;
+import com.synectiks.process.server.plugin.database.users.User;
+import com.synectiks.process.server.security.MongoDbAuthorizationCacheManager;
+import com.synectiks.process.server.shared.security.ShiroRequestHeadersBinder;
+import com.synectiks.process.server.shared.users.UserService;
+import com.synectiks.process.server.users.events.UserChangedEvent;
+
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import java.util.Optional;
+import java.util.Set;
+
+import static com.synectiks.process.server.shared.rest.RequestIdFilter.X_REQUEST_ID;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
+public class MongoDbAuthorizationRealm extends AuthorizingRealm {
+
+    public static final String NAME = "mongodb-authorization-realm";
+    private static final Logger LOG = LoggerFactory.getLogger(MongoDbAuthorizationRealm.class);
+    private final UserService userService;
+    private final PermissionAndRoleResolver permissionAndRoleResolver;
+    private final GRNRegistry grnRegistry;
+
+    @Inject
+    MongoDbAuthorizationRealm(UserService userService,
+                              MongoDbAuthorizationCacheManager mongoDbAuthorizationCacheManager,
+                              PermissionAndRoleResolver permissionAndRoleResolver,
+                              GRNRegistry grnRegistry,
+                              EventBus serverEventBus) {
+        this.userService = userService;
+        this.permissionAndRoleResolver = permissionAndRoleResolver;
+        this.grnRegistry = grnRegistry;
+        setCachingEnabled(true);
+        setCacheManager(mongoDbAuthorizationCacheManager);
+        serverEventBus.register(this);
+    }
+
+    @Override
+    protected Object getAuthorizationCacheKey(PrincipalCollection principals) {
+        final Optional<String> requestId = ShiroRequestHeadersBinder.getHeaderFromThreadContext(X_REQUEST_ID);
+
+        if (requestId.isPresent()) {
+            return ImmutableSet.builder().addAll(principals).add(requestId.get()).build();
+        }
+        LOG.warn("Could not find X-Request-Id header. This is not supposed to happen.");
+        return principals.asSet();
+    }
+
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        LOG.debug("Retrieving authorization information for: {}", principals);
+
+        // This realm can handle both, user String principals and GRN principals.
+        final GRN principal = getUserPrincipal(principals)
+                .orElseGet(() -> getGRNPrincipal(principals).orElse(null));
+        if (principal == null) {
+            return new SimpleAuthorizationInfo();
+        }
+        LOG.debug("GRN principal: {}", principal);
+
+        final ImmutableSet.Builder<Permission> permissionsBuilder = ImmutableSet.builder();
+        final ImmutableSet.Builder<String> rolesBuilder = ImmutableSet.builder();
+
+        // Resolve grant permissions and roles for the GRN
+        permissionsBuilder.addAll(permissionAndRoleResolver.resolvePermissionsForPrincipal(principal));
+        rolesBuilder.addAll(permissionAndRoleResolver.resolveRolesForPrincipal(principal));
+
+        if (GRNTypes.USER.equals(principal.grnType())) {
+            // If the principal is a user, we also need to load permissions and roles from the user object
+            final User user = userService.loadById(principal.entity());
+            if (user != null) {
+                final Set<Permission> userPermissions = user.getObjectPermissions();
+
+                permissionsBuilder.addAll(userPermissions);
+                rolesBuilder.addAll(user.getRoleIds());
+            } else {
+                LOG.warn("User <{}> not found for permission and role resolving", principal);
+            }
+        }
+
+        final SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.setObjectPermissions(permissionsBuilder.build());
+        info.setRoles(rolesBuilder.build());
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Authorization info for {} - permissions: {}", principal, info.getObjectPermissions());
+            LOG.debug("Authorization info for {} - roles: {}", principal, info.getRoles());
+        }
+
+        return info;
+    }
+
+    private Optional<GRN> getUserPrincipal(PrincipalCollection principals) {
+        final String userId = Iterables.getFirst(principals.byType(String.class), null);
+        if (isBlank(userId)) {
+            return Optional.empty();
+        }
+        return Optional.of(grnRegistry.newGRN("user", userId));
+    }
+
+    private Optional<GRN> getGRNPrincipal(PrincipalCollection principals) {
+        final GRN principal = Iterables.getFirst(principals.byType(GRN.class), null);
+        if (principal == null) {
+            return Optional.empty();
+        }
+        return Optional.of(principal);
+    }
+
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        // This class does not authenticate at all
+        return false;
+    }
+
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        // This class does not authenticate at all
+        return null;
+    }
+
+    @Subscribe
+    public void handleUserSave(UserChangedEvent event) {
+        getAuthorizationCache().clear();
+    }
+}

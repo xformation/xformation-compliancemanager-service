@@ -1,0 +1,10 @@
+{
+  "name": "compliancemanager-plugin-web-parent",
+  "version": "1.0.0",
+  "description": "Dummy package.json for compliancemanager-plugin-web-parent",
+  "author": "Synectiks",
+  "license": "SSPL-1.0",
+  "scripts": {
+    "build": "echo 'Dummy build script for compliancemanager-plugin-web-parent'"
+  }
+}

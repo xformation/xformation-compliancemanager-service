@@ -1,0 +1,5 @@
+window.appConfig = {
+  xfalertServerUrl: '${serverUri}',
+  xfalertAppPathPrefix: '${appPathPrefix}',
+  rootTimeZone: '${rootTimeZone}',
+};

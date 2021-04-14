@@ -1,0 +1,207 @@
+/*
+ * */
+package com.synectiks.process.common.events.notifications.types;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.floreysoft.jmte.Engine;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableList;
+import com.synectiks.process.common.events.notifications.EventBacklogService;
+import com.synectiks.process.common.events.notifications.EventNotificationContext;
+import com.synectiks.process.common.events.notifications.EventNotificationModelData;
+import com.synectiks.process.common.events.processor.DBEventDefinitionService;
+import com.synectiks.process.server.alerts.EmailRecipients;
+import com.synectiks.process.server.configuration.EmailConfiguration;
+import com.synectiks.process.server.jackson.TypeReferences;
+import com.synectiks.process.server.notifications.Notification;
+import com.synectiks.process.server.notifications.NotificationService;
+import com.synectiks.process.server.plugin.MessageSummary;
+import com.synectiks.process.server.plugin.alarms.transports.TransportConfigurationException;
+import com.synectiks.process.server.plugin.system.NodeId;
+
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.HtmlEmail;
+import org.apache.commons.mail.EmailConstants;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.Objects.requireNonNull;
+
+public class EmailSender {
+    private static final Logger LOG = LoggerFactory.getLogger(EmailSender.class);
+
+    private final EmailConfiguration emailConfig;
+    private final EmailRecipients.Factory emailRecipientsFactory;
+    private final EventBacklogService eventBacklogService;
+    private final NotificationService notificationService;
+    private final NodeId nodeId;
+    private final DBEventDefinitionService eventDefinitionService;
+    private final ObjectMapper objectMapper;
+    private final Engine templateEngine;
+
+    @Inject
+    public EmailSender(EmailConfiguration emailConfig,
+                       EmailRecipients.Factory emailRecipientsFactory,
+                       EventBacklogService eventBacklogService,
+                       NotificationService notificationService,
+                       NodeId nodeId,
+                       DBEventDefinitionService eventDefinitionService,
+                       ObjectMapper objectMapper,
+                       Engine templateEngine) {
+        this.emailConfig = requireNonNull(emailConfig, "emailConfig");
+        this.emailRecipientsFactory = requireNonNull(emailRecipientsFactory, "emailRecipientsFactory");
+        this.eventBacklogService = eventBacklogService;
+        this.notificationService = requireNonNull(notificationService, "notificationService");
+        this.nodeId = requireNonNull(nodeId, "nodeId");
+        this.eventDefinitionService = eventDefinitionService;
+        this.objectMapper = requireNonNull(objectMapper, "objectMapper)");
+        this.templateEngine = requireNonNull(templateEngine, "templateEngine");
+    }
+
+    @VisibleForTesting
+    private String buildSubject(EmailEventNotificationConfig config, Map<String, Object> model) {
+        final String template;
+        if (isNullOrEmpty(config.subject())) {
+            template = EmailEventNotificationConfig.DEFAULT_SUBJECT;
+        } else {
+            template = config.subject();
+        }
+
+        return templateEngine.transform(template, model);
+    }
+
+    @VisibleForTesting
+    private String buildBody(EmailEventNotificationConfig config, Map<String, Object> model) {
+        final String template;
+        if (isNullOrEmpty(config.bodyTemplate())) {
+            template = EmailEventNotificationConfig.DEFAULT_BODY_TEMPLATE;
+        } else {
+            template = config.bodyTemplate();
+        }
+
+        return this.templateEngine.transform(template, model);
+    }
+
+    @VisibleForTesting
+    private String buildHtmlBody(EmailEventNotificationConfig config, Map<String, Object> model) {
+        return this.templateEngine.transform(config.htmlBodyTemplate(), model);
+    }
+
+    private String formatHtmlBody(String bodyContent) {
+        return "<html><body>" + bodyContent + "</body></html>";
+    }
+
+    private Map<String, Object> getModel(EventNotificationContext ctx, ImmutableList<MessageSummary> backlog) {
+        final EventNotificationModelData modelData = EventNotificationModelData.of(ctx, backlog);
+        return objectMapper.convertValue(modelData, TypeReferences.MAP_STRING_OBJECT);
+    }
+
+    private void sendEmail(EmailEventNotificationConfig config, String emailAddress, Map<String, Object> model) throws TransportConfigurationException, EmailException {
+        LOG.debug("Sending mail to " + emailAddress);
+        if (!emailConfig.isEnabled()) {
+            throw new TransportConfigurationException("Email transport is not enabled in server configuration file!");
+        }
+
+        final Email email = createEmailWithBody(config, model);
+        email.setCharset(EmailConstants.UTF_8);
+
+        if (isNullOrEmpty(emailConfig.getHostname())) {
+            throw new TransportConfigurationException("No hostname configured for email transport while trying to send notification email!");
+        } else {
+            email.setHostName(emailConfig.getHostname());
+        }
+        email.setSmtpPort(emailConfig.getPort());
+
+        if (emailConfig.isUseSsl()) {
+            email.setSslSmtpPort(Integer.toString(emailConfig.getPort()));
+        }
+
+        if (emailConfig.isUseAuth()) {
+            email.setAuthenticator(new DefaultAuthenticator(
+                    Strings.nullToEmpty(emailConfig.getUsername()),
+                    Strings.nullToEmpty(emailConfig.getPassword())
+            ));
+        }
+
+        if (isNullOrEmpty(config.sender())) {
+            email.setFrom(emailConfig.getFromEmail());
+        } else {
+            email.setFrom(config.sender());
+        }
+
+        email.setSSLOnConnect(emailConfig.isUseSsl());
+        email.setStartTLSEnabled(emailConfig.isUseTls());
+        email.setSubject(buildSubject(config, model));
+        email.addTo(emailAddress);
+
+        email.send();
+    }
+
+    Email createEmailWithBody(EmailEventNotificationConfig config, Map<String, Object> model) throws EmailException {
+        if (!isNullOrEmpty(config.htmlBodyTemplate())) {
+            HtmlEmail email = new HtmlEmail();
+            email.setTextMsg(buildBody(config, model));
+            email.setHtmlMsg(buildHtmlBody(config, model));
+            return email;
+        } else {
+            SimpleEmail email = new SimpleEmail();
+            email.setMsg(buildBody(config, model));
+            return email;
+        }
+    }
+
+    // TODO: move EmailRecipients class to events code
+    void sendEmails(EmailEventNotificationConfig notificationConfig, EventNotificationContext ctx, ImmutableList<MessageSummary> backlog) throws TransportConfigurationException, EmailException, ConfigurationError {
+        if (!emailConfig.isEnabled()) {
+            throw new TransportConfigurationException("Email transport is not enabled in server configuration file!");
+        }
+
+        final EmailRecipients emailRecipients = emailRecipientsFactory.create(
+                new ArrayList<>(notificationConfig.userRecipients()),
+                new ArrayList<>(notificationConfig.emailRecipients())
+        );
+
+        if (!emailConfig.isEnabled()) {
+            LOG.debug("Email transport is not enabled in server configuration file!");
+            return;
+        }
+
+        if (emailRecipients.isEmpty()) {
+            LOG.debug("Cannot send emails: empty recipient list.");
+            return;
+        }
+
+        final Set<String> recipientsSet = emailRecipients.getEmailRecipients();
+        if (recipientsSet.size() == 0) {
+            final Notification notification = notificationService.buildNow()
+                    .addNode(nodeId.toString())
+                    .addType(Notification.Type.GENERIC)
+                    .addSeverity(Notification.Severity.NORMAL)
+                    .addDetail("title", "No recipients have been defined!")
+                    .addDetail("description", "To fix this, go to the notification configuration and add at least one alert recipient.");
+            notificationService.publishIfFirst(notification);
+        }
+
+        final Map<String, Object> model = getModel(ctx, backlog);
+
+        for (String email : recipientsSet) {
+            sendEmail(notificationConfig, email, model);
+        }
+    }
+
+    static class ConfigurationError extends Exception {
+        ConfigurationError(String message) {
+            super(message);
+        }
+    }
+}
