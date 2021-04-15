@@ -86,17 +86,17 @@ public abstract class CmdLineTool implements CliCommand {
     protected final BaseConfiguration configuration;
     protected final ChainingClassLoader chainingClassLoader;
 
-    @Option(name = "--dump-config", description = "Show the effective alertmanager configuration and exit")
+    @Option(name = "--dump-config", description = "Show the effective compliancemanager configuration and exit")
     protected boolean dumpConfig = false;
 
     @Option(name = "--dump-default-config", description = "Show the default configuration and exit")
     protected boolean dumpDefaultConfig = false;
 
-    @Option(name = {"-d", "--debug"}, description = "Run alertmanager in debug mode")
+    @Option(name = {"-d", "--debug"}, description = "Run compliancemanager in debug mode")
     private boolean debug = false;
 
-    @Option(name = {"-f", "--configfile"}, description = "Configuration file for alertmanager")
-    private String configFile = "/opt/alertmanager/server.conf";
+    @Option(name = {"-f", "--configfile"}, description = "Configuration file for compliancemanager")
+    private String configFile = "/opt/compliancemanager/server.conf";
 
     protected String commandName = "command";
 
@@ -314,18 +314,18 @@ public abstract class CmdLineTool implements CliCommand {
 
     protected Collection<Repository> getConfigRepositories(String configFile) {
         return Arrays.asList(
-                new EnvironmentRepository("ALERTMANAGER_"),
-                new SystemPropertiesRepository("alertmanager."),
+                new EnvironmentRepository("COMPLIANCEMANAGER_"),
+                new SystemPropertiesRepository("compliancemanager."),
                 // Legacy prefixes
-                new EnvironmentRepository("alertmanager2_"),
-                new SystemPropertiesRepository("alertmanager2."),
+                new EnvironmentRepository("compliancemanager2_"),
+                new SystemPropertiesRepository("compliancemanager2."),
                 new PropertiesRepository(configFile)
         );
     }
 
     private String dumpConfiguration(final Map<String, String> configMap) {
         final StringBuilder sb = new StringBuilder();
-        sb.append("# Configuration of alertmanager2-").append(commandName).append(" ").append(version).append(System.lineSeparator());
+        sb.append("# Configuration of compliancemanager2-").append(commandName).append(" ").append(version).append(System.lineSeparator());
         sb.append("# Generated on ").append(Tools.nowUTC()).append(System.lineSeparator());
 
         for (Map.Entry<String, String> entry : configMap.entrySet()) {

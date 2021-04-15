@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 @RequiresAuthentication
-@Api(value = "System/Metrics", description = "Internal alertmanager metrics")
+@Api(value = "System/Metrics", description = "Internal compliancemanager metrics")
 @Path("/system/metrics")
 public class MetricsResource extends RestResource {
 

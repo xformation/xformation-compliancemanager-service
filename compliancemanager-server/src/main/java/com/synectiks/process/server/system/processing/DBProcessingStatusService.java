@@ -106,7 +106,7 @@ public class DBProcessingStatusService {
     }
 
     /**
-     * Returns the earliest post-indexing receive timestamp of all active alertmanager nodes in the cluster.
+     * Returns the earliest post-indexing receive timestamp of all active compliancemanager nodes in the cluster.
      * This can be used to find out if a certain timerange is already searchable in Elasticsearch.
      * <p>
      * Beware: This only takes the message receive time into account. It doesn't help when log sources send their

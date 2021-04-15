@@ -14,10 +14,10 @@ import java.net.URI;
 @WithBeanGetter
 @JsonAutoDetect
 public abstract class AppConfig {
-    @JsonProperty("xfalertServerUrl")
+    @JsonProperty("xfcomplianceServerUrl")
     public abstract URI serverUri();
 
-    @JsonProperty("xfalertAppPathPrefix")
+    @JsonProperty("xfcomplianceAppPathPrefix")
     public abstract String appPathPrefix();
 
     @JsonCreator

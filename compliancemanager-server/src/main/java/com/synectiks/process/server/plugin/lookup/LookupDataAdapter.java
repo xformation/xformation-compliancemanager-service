@@ -193,8 +193,8 @@ public abstract class LookupDataAdapter extends AbstractIdleService {
         return config;
     }
 
-    // This factory is implemented by LookupDataAdapter plugins that have been built before alertmanager 3.2.
-    // We have to keep it around to make sure older plugins still load with alertmanager >=3.2.
+    // This factory is implemented by LookupDataAdapter plugins that have been built before compliancemanager 3.2.
+    // We have to keep it around to make sure older plugins still load with compliancemanager >=3.2.
     // It can be removed once we decide to stop supporting old plugins.
     public interface Factory<T extends LookupDataAdapter> {
         T create(@Assisted("id") String id, @Assisted("name") String name, LookupDataAdapterConfiguration configuration);
@@ -202,7 +202,7 @@ public abstract class LookupDataAdapter extends AbstractIdleService {
         Descriptor getDescriptor();
     }
 
-    // This is the factory that should be implemented by LookupDataAdapter plugins which target alertmanager 3.2 and later.
+    // This is the factory that should be implemented by LookupDataAdapter plugins which target compliancemanager 3.2 and later.
     public interface Factory2<T extends LookupDataAdapter> {
         T create(@Assisted("dto") DataAdapterDto dto);
 

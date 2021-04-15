@@ -96,13 +96,13 @@ public abstract class PluginModule extends Graylog2Module {
         serviceBinder.addBinding().to(initializerClass);
     }
 
-    // This should only be used by plugins that have been built before alertmanager 3.0.1.
+    // This should only be used by plugins that have been built before compliancemanager 3.0.1.
     // See comments in MessageOutput.Factory and MessageOutput.Factory2 for details
     protected void addMessageOutput(Class<? extends MessageOutput> messageOutputClass) {
         installOutput(outputsMapBinder(), messageOutputClass);
     }
 
-    // This should only be used by plugins that have been built before alertmanager 3.0.1.
+    // This should only be used by plugins that have been built before compliancemanager 3.0.1.
     // See comments in MessageOutput.Factory and MessageOutput.Factory2 for details
     protected <T extends MessageOutput> void addMessageOutput(Class<T> messageOutputClass,
                                                               Class<? extends MessageOutput.Factory<T>> factory) {

@@ -456,7 +456,7 @@ public class DnsClient {
 
         if (!isHostName(hostName)) {
             throw new IllegalArgumentException(
-                    String.format(Locale.ENGLISH, "[%s] is an invalid hostname. Please supply a pure hostname (eg. api.alertmanager.com)",
+                    String.format(Locale.ENGLISH, "[%s] is an invalid hostname. Please supply a pure hostname (eg. api.compliancemanager.com)",
                                   hostName));
         }
     }

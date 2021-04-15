@@ -27,7 +27,7 @@ import java.util.Optional;
 public class SessionAuthenticator extends AuthenticatingRealm {
     private static final Logger LOG = LoggerFactory.getLogger(SessionAuthenticator.class);
     public static final String NAME = "mongodb-session";
-    public static final String X_GRAYLOG_NO_SESSION_EXTENSION = "X-alertmanager-No-Session-Extension";
+    public static final String X_GRAYLOG_NO_SESSION_EXTENSION = "X-compliancemanager-No-Session-Extension";
 
     private final UserService userService;
     private final ClusterConfigService clusterConfigService;

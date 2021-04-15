@@ -11,7 +11,7 @@ import static com.google.common.collect.ImmutableSet.of;
 import static com.synectiks.process.server.indexer.fieldtypes.FieldTypes.Type.createType;
 
 /**
- * Maps Elasticsearch field types to alertmanager types.
+ * Maps Elasticsearch field types to compliancemanager types.
  * <p>
  * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html">Elasticsearch mapping types</a>
  */
@@ -36,7 +36,7 @@ public class FieldTypeMapper {
     private static final FieldTypes.Type IP_TYPE = createType("ip", of(PROP_ENUMERABLE));
 
     /**
-     * A map from Elasticsearch types to alertmanager logical types.
+     * A map from Elasticsearch types to compliancemanager logical types.
      */
     private static final ImmutableMap<String, FieldTypes.Type> TYPE_MAP = ImmutableMap.<String, FieldTypes.Type>builder()
             .put("keyword", STRING_TYPE) // since ES 5.x
@@ -57,9 +57,9 @@ public class FieldTypeMapper {
             .build();
 
     /**
-     * Map the given Elasticsearch field type to a alertmanager type.
+     * Map the given Elasticsearch field type to a compliancemanager type.
      * @param typeName Elasticsearch type name
-     * @return the alertmanager type object
+     * @return the compliancemanager type object
      */
     public Optional<FieldTypes.Type> mapType(String typeName) {
         return Optional.ofNullable(TYPE_MAP.get(typeName));

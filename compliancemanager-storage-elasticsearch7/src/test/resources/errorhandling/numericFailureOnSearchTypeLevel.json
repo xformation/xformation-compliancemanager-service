@@ -20,7 +20,7 @@
           },
           {
             "shard": 0,
-            "index": "alertmanager_1",
+            "index": "compliancemanager_1",
             "node": "Mc1oQWuEQom5uQyCljDEGA",
             "reason": {
               "type": "illegal_argument_exception",
@@ -29,7 +29,7 @@
           },
           {
             "shard": 0,
-            "index": "alertmanager_8",
+            "index": "compliancemanager_8",
             "node": "Mc1oQWuEQom5uQyCljDEGA",
             "reason": {
               "type": "illegal_argument_exception",

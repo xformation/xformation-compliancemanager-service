@@ -28,8 +28,8 @@ import java.util.Set;
 public abstract class EmailEventNotificationConfig implements EventNotificationConfig {
     public static final String TYPE_NAME = "email-notification-v1";
 
-    private static final String DEFAULT_SENDER = "alertmanager@example.org";
-    static final String DEFAULT_SUBJECT = "alertmanager event notification: ${event_definition_title}";
+    private static final String DEFAULT_SENDER = "compliancemanager@example.org";
+    static final String DEFAULT_SUBJECT = "compliancemanager event notification: ${event_definition_title}";
     static final String DEFAULT_BODY_TEMPLATE = "--- [Event Definition] ---------------------------\n" +
             "Title:       ${event_definition_title}\n" +
             "Description: ${event_definition_description}\n" +

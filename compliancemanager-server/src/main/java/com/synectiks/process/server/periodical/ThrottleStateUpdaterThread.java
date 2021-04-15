@@ -222,7 +222,7 @@ public class ThrottleStateUpdaterThread extends Periodical {
         // publish to interested parties
         eventBus.post(throttleState);
 
-        // Abusing the current thread to send notifications from KafkaJournal in the alertmanager2-shared module
+        // Abusing the current thread to send notifications from KafkaJournal in the compliancemanager2-shared module
         final double journalUtilizationPercentage = throttleState.journalSizeLimit > 0 ? (throttleState.journalSize * 100) / throttleState.journalSizeLimit : 0.0;
 
         if (journalUtilizationPercentage > KafkaJournal.NOTIFY_ON_UTILIZATION_PERCENTAGE) {

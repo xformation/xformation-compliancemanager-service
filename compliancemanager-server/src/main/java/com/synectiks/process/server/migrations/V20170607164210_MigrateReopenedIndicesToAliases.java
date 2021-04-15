@@ -26,7 +26,7 @@ import java.util.Set;
 
 public class V20170607164210_MigrateReopenedIndicesToAliases extends Migration {
     private static final Logger LOG = LoggerFactory.getLogger(V20170607164210_MigrateReopenedIndicesToAliases.class);
-    private static final String REOPENED_INDEX_SETTING = "alertmanager2_reopened";
+    private static final String REOPENED_INDEX_SETTING = "compliancemanager2_reopened";
 
     private final Node node;
     private final IndexSetService indexSetService;

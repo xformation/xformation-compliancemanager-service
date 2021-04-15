@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class SearchAfter implements RequestStrategy {
 
-    static final String DEFAULT_TIEBREAKER_FIELD = Message.FIELD_XFALERT_MESSAGE_ID;
+    static final String DEFAULT_TIEBREAKER_FIELD = Message.FIELD_XFCOMPLIANCE_MESSAGE_ID;
     static final String EVENTS_TIEBREAKER_FIELD = Message.FIELD_ID;
 
     private final ExportClient client;

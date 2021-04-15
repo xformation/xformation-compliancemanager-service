@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static com.synectiks.process.server.plugin.Message.FIELD_XFALERT_MESSAGE_ID;
+import static com.synectiks.process.server.plugin.Message.FIELD_XFCOMPLIANCE_MESSAGE_ID;
 
 
 public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7IT extends ElasticsearchBaseTest {
@@ -47,7 +47,7 @@ public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7IT extends Ela
     public void addsFieldAliasForMatchingIndices() {
         createIndicesWithIdMapping("aaa_0", "aaa_1", "bbb_0");
 
-        sut.addXfAlertMessageIdFieldAlias(ImmutableSet.of("aaa", "bbb"));
+        sut.addXfComplianceMessageIdFieldAlias(ImmutableSet.of("aaa", "bbb"));
 
         assertFieldAliasIsPresentForIndices("aaa_0", "aaa_1", "bbb_0");
     }
@@ -56,7 +56,7 @@ public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7IT extends Ela
     public void doesNotAddFieldAliasForNonMatchingIndices() {
         createIndicesWithIdMapping("aaa_0", "aaa_1", "bbb_0");
 
-        sut.addXfAlertMessageIdFieldAlias(ImmutableSet.of("bbb"));
+        sut.addXfComplianceMessageIdFieldAlias(ImmutableSet.of("bbb"));
 
         assertFieldAliasIsNotPresentForIndices("aaa_0", "aaa_1");
     }
@@ -65,8 +65,8 @@ public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7IT extends Ela
     public void addingFieldAliasesIsIdempotent() {
         createIndicesWithIdMapping("aaa_0", "bbb_0");
 
-        sut.addXfAlertMessageIdFieldAlias(ImmutableSet.of("aaa"));
-        sut.addXfAlertMessageIdFieldAlias(ImmutableSet.of("aaa"));
+        sut.addXfComplianceMessageIdFieldAlias(ImmutableSet.of("aaa"));
+        sut.addXfComplianceMessageIdFieldAlias(ImmutableSet.of("aaa"));
 
         assertFieldAliasIsPresentForIndices("aaa_0");
         assertFieldAliasIsNotPresentForIndices("bbb_0");
@@ -88,9 +88,9 @@ public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7IT extends Ela
     private void assertMappingsContainFieldAliasForIndex(Map<String, MappingMetadata> mappings, String index) {
         final Map<String, Object> properties = propertiesFrom(mappings, index);
 
-        assertThat(properties).as(FIELD_XFALERT_MESSAGE_ID + " should be present in mapping for " + index)
-                .containsKey(FIELD_XFALERT_MESSAGE_ID);
-        assertThat(properties.get(FIELD_XFALERT_MESSAGE_ID)).as("field alias definition for " + index + " should be valid")
+        assertThat(properties).as(FIELD_XFCOMPLIANCE_MESSAGE_ID + " should be present in mapping for " + index)
+                .containsKey(FIELD_XFCOMPLIANCE_MESSAGE_ID);
+        assertThat(properties.get(FIELD_XFCOMPLIANCE_MESSAGE_ID)).as("field alias definition for " + index + " should be valid")
                 .isEqualTo(V20200730000000_AddGl2MessageIdFieldAliasForEventsES7.aliasMapping());
     }
 
@@ -110,8 +110,8 @@ public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7IT extends Ela
     private void assertMappingsDontContainFieldAliasForIndex(Map<String, MappingMetadata> mappings, String index) {
         final Map<String, Object> properties = propertiesFrom(mappings, index);
 
-        assertThat(properties).as(FIELD_XFALERT_MESSAGE_ID + " should NOT be present in mapping for " + index)
-                .doesNotContainKey(FIELD_XFALERT_MESSAGE_ID);
+        assertThat(properties).as(FIELD_XFCOMPLIANCE_MESSAGE_ID + " should NOT be present in mapping for " + index)
+                .doesNotContainKey(FIELD_XFCOMPLIANCE_MESSAGE_ID);
     }
 
     private void createIndicesWithIdMapping(String... indices) {

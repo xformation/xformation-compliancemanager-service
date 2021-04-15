@@ -25,7 +25,7 @@ import java.util.stream.Stream;
  * This class is a helper to implement a basic Mongojack-based database service that allows CRUD operations on a
  * single DTO type and offers paginated access.
  * <p>
- * It makes only a few assumptions, which are common to many alertmanager entities:
+ * It makes only a few assumptions, which are common to many compliancemanager entities:
  *     <ul>
  *         <li>The DTO class has a name which is unique</li>
  *     </ul>

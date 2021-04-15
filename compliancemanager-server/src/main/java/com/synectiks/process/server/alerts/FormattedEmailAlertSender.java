@@ -88,7 +88,7 @@ public class FormattedEmailAlertSender implements AlertSender {
     String buildSubject(Stream stream, AlertCondition.CheckResult checkResult, List<Message> backlog) {
         final String template;
         if (pluginConfig == null || pluginConfig.getString("subject") == null) {
-            template = "alertmanager alert for stream: ${stream.title}: ${check_result.resultDescription}";
+            template = "compliancemanager alert for stream: ${stream.title}: ${check_result.resultDescription}";
         } else {
             template = pluginConfig.getString("subject");
         }
@@ -128,7 +128,7 @@ public class FormattedEmailAlertSender implements AlertSender {
     private String buildStreamDetailsURL(URI baseUri, AlertCondition.CheckResult checkResult, Stream stream) {
         // Return an informational message if the web interface URL hasn't been set
         if (baseUri == null || isNullOrEmpty(baseUri.getHost())) {
-            return "Please configure 'transport_email_web_interface_url' in your alertmanager configuration file.";
+            return "Please configure 'transport_email_web_interface_url' in your compliancemanager configuration file.";
         }
 
         int time = 5;

@@ -55,7 +55,7 @@ public class ClusterLoadBalancerStatusResource extends ProxiedResource {
     @Timed
     @RequiresAuthentication
     @RequiresPermissions(RestPermissions.LBSTATUS_CHANGE)
-    @ApiOperation(value = "Override load balancer status of this alertmanager-server node. Next lifecycle " +
+    @ApiOperation(value = "Override load balancer status of this compliancemanager-server node. Next lifecycle " +
             "change will override it again to its default. Set to ALIVE, DEAD, or THROTTLED.")
     @Path("/override/{status}")
     @NoAuditEvent("this is a proxy resource, the audit event will be emitted on the target node")

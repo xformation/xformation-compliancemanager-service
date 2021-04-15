@@ -19,7 +19,7 @@ public class CORSFilter implements ContainerRequestFilter, ContainerResponseFilt
             ImmutableMap.of(
                     "Access-Control-Allow-Origin", "*",
                     "Access-Control-Allow-Credentials", true,
-                    "Access-Control-Allow-Headers", "Authorization, Content-Type, X-alertmanager-No-Session-Extension, X-Requested-With, X-Requested-By",
+                    "Access-Control-Allow-Headers", "Authorization, Content-Type, X-compliancemanager-No-Session-Extension, X-Requested-With, X-Requested-By",
                     "Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS",
                     // In order to avoid redoing the preflight thingy for every request, see http://stackoverflow.com/a/12021982/1088469
                     "Access-Control-Max-Age", "600" // 10 minutes seems to be the maximum allowable value

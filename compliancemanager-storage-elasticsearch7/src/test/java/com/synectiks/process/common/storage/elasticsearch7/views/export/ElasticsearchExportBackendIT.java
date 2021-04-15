@@ -183,7 +183,7 @@ public class ElasticsearchExportBackendIT extends ElasticsearchBaseTest {
         Set<String> allFieldsInResult = actualFieldNamesFrom(totalResult);
 
         assertThat(allFieldsInResult).containsExactlyInAnyOrder(
-                "xfalert_message_id",
+                "xfcompliance_message_id",
                 "source",
                 "message",
                 "timestamp",

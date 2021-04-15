@@ -143,7 +143,7 @@ public class OkHttpClientProvider implements Provider<OkHttpClient> {
                     .collect(Collectors.toSet());
 
             if (!authenticationMethods.contains(AUTH_BASIC)) {
-                LOG.warn("alertmanager only supports the \"{}\" authentication scheme but the proxy server asks for one of the following: {}",
+                LOG.warn("compliancemanager only supports the \"{}\" authentication scheme but the proxy server asks for one of the following: {}",
                         AUTH_BASIC, authenticationMethods);
                 return null;
             }

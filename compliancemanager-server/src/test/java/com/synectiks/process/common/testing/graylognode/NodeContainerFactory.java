@@ -48,7 +48,7 @@ public class NodeContainerFactory {
                 .withFileFromClasspath("Dockerfile", "com/synectiks/process/common/testing/graylognode/Dockerfile")
                 // set mode here explicitly, because file system permissions can get lost when executing from maven
                 .withFileFromFile("docker-entrypoint.sh", entrypointScript, EXECUTABLE_MODE)
-                .withFileFromPath("server.conf", pathTo("alertmanager_config"))
+                .withFileFromPath("server.conf", pathTo("compliancemanager_config"))
                 .withFileFromClasspath("log4j2.xml", "log4j2.xml")
                 .withFileFromPath("sigar", pathTo("sigar_dir"));
         if (config.enableDebugging) {
@@ -58,7 +58,7 @@ public class NodeContainerFactory {
     }
 
     private static GenericContainer<?> createRunningContainer(NodeContainerConfig config, ImageFromDockerfile image) {
-        String graylogHome = "/opt/alertmanager";
+        String graylogHome = "/opt/compliancemanager";
 
         GenericContainer<?> container = new GenericContainer<>(image)
                 .withFileSystemBind(property("server_jar"), graylogHome + "/graylog.jar", BindMode.READ_ONLY)

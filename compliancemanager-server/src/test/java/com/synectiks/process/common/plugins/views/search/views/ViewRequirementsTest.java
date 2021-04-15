@@ -28,11 +28,11 @@ public class ViewRequirementsTest {
 
     private final PluginMetadataSummary plugin = PluginMetadataSummary.create(
             "com.synectiks.process.common.plugins.aioverlord",
-            "alertmanager AI Overlord",
-            "garybot@alertmanager.org",
-            new URI("https://www.alertmanager.org/ai"),
+            "compliancemanager AI Overlord",
+            "garybot@compliancemanager.org",
+            new URI("https://www.compliancemanager.org/ai"),
             "3.0.0",
-            "alertmanager becomes self-aware at 2:14AM."
+            "compliancemanager becomes self-aware at 2:14AM."
     );
 
     public ViewRequirementsTest() throws URISyntaxException {

@@ -13,7 +13,7 @@ public class SidecarPluginConfiguration implements PluginConfigBean {
     private static final String PREFIX = "sidecar_";
 
     @Parameter(value = PREFIX + "user", validator = StringNotEmptyValidator.class)
-    private String user = "alertmanager-sidecar";
+    private String user = "compliancemanager-sidecar";
 
     @Parameter(value = PREFIX + "cache_time", validator = PositiveDurationValidator.class)
     private Duration cacheTime = Duration.hours(1L);

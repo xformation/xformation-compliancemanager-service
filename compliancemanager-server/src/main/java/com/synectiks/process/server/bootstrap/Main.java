@@ -15,7 +15,7 @@ import java.util.ServiceLoader;
 
 public class Main {
     public static void main(String[] args) {
-        final CliBuilder<CliCommand> builder = Cli.<CliCommand>builder("alertmanager")
+        final CliBuilder<CliCommand> builder = Cli.<CliCommand>builder("compliancemanager")
                 .withDescription("Open source, centralized log management")
                 .withDefaultCommand(CliCommandHelp.class)
                 .withCommands(ImmutableSet.of(

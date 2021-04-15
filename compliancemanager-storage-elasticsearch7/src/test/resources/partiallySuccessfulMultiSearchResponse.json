@@ -11,7 +11,7 @@
         "failures": [
           {
             "shard": 0,
-            "index": "alertmanager2_31",
+            "index": "compliancemanager2_31",
             "node": "OUf4rbYVRsmUxNE-9r5Jbw",
             "reason": {
               "type": "illegal_argument_exception",

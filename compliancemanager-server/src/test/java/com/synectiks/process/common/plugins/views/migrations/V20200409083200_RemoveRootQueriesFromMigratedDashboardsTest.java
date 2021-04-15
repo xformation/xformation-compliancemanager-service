@@ -95,8 +95,8 @@ public class V20200409083200_RemoveRootQueriesFromMigratedDashboardsTest {
         assertThat(rootQueryStrings("5dad673d6131be4f08ceea77")).allMatch(String::isEmpty);
         assertThat(rootQueryStrings("5dbbf604799412036075d78f")).allMatch(String::isEmpty);
 
-        assertThat(rootQueryStrings("5da9bbb944300ca38bc5da3e")).containsExactlyInAnyOrder("author:\"$author$\" AND project:\"alertmanager2-server\"", "author:\"$author$\"");
-        assertThat(rootQueryStrings("5da9bbba12993f3904b41217")).containsExactlyInAnyOrder("author:\"$author$\" AND project:\"alertmanager2-server\"", "author:\"$author$\"");
+        assertThat(rootQueryStrings("5da9bbb944300ca38bc5da3e")).containsExactlyInAnyOrder("author:\"$author$\" AND project:\"compliancemanager2-server\"", "author:\"$author$\"");
+        assertThat(rootQueryStrings("5da9bbba12993f3904b41217")).containsExactlyInAnyOrder("author:\"$author$\" AND project:\"compliancemanager2-server\"", "author:\"$author$\"");
     }
 
     private MongoCollection<Document> afterSearchesCollection() {

@@ -23,7 +23,7 @@ public class MetricCounterIncrement extends AbstractFunction<Void> {
     public MetricCounterIncrement(MetricRegistry metricRegistry) {
         nameParam = ParameterDescriptor.string("name", Counter.class)
                 .description("The counter metric name, will always be prefixed with 'org.graylog.rulemetrics.'")
-                .transform(name -> metricRegistry.counter(MetricRegistry.name("org.alertmanager.rulemetrics", name)))
+                .transform(name -> metricRegistry.counter(MetricRegistry.name("org.compliancemanager.rulemetrics", name)))
                 .build();
         valueParam = ParameterDescriptor.integer("value")
                 .description("Value to increment the counter by")

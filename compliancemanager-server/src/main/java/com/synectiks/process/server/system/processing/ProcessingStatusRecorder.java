@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 import com.synectiks.process.server.plugin.lifecycles.Lifecycle;
 
 /**
- * This is used to track processing status on a single alertmanager node.
+ * This is used to track processing status on a single compliancemanager node.
  */
 public interface ProcessingStatusRecorder {
     /**

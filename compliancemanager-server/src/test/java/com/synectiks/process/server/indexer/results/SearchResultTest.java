@@ -44,7 +44,7 @@ public class SearchResultTest {
             "source",
             "timestamp",
             "http_response",
-            "xfalert_source_node",
+            "xfcompliance_source_node",
             "_index"
         ));
         when(r1.getMessage()).thenReturn(m1);
@@ -56,7 +56,7 @@ public class SearchResultTest {
             "source",
             "timestamp",
             "took_ms",
-            "xfalert_source_collector"
+            "xfcompliance_source_collector"
         ));
         when(r2.getMessage()).thenReturn(m2);
 

@@ -9,7 +9,7 @@ import com.synectiks.process.common.plugins.views.migrations.V20200730000000_Add
 
 public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES6 implements V20200730000000_AddGl2MessageIdFieldAliasForEvents.ElasticsearchAdapter {
     @Override
-    public void addXfAlertMessageIdFieldAlias(Set<String> indexPrefixes) {
+    public void addXfComplianceMessageIdFieldAlias(Set<String> indexPrefixes) {
         throw new IllegalStateException("Field aliases are not supported for all minor versions of ES6. This should never be called.");
     }
 }

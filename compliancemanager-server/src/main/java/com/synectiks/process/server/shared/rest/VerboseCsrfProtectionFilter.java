@@ -13,7 +13,7 @@ public class VerboseCsrfProtectionFilter extends CsrfProtectionFilter {
     public void filter(ContainerRequestContext rc) throws IOException {
         try {
             // Backward compatibility for Sidecars < 0.1.7
-            if (!rc.getHeaders().containsKey("X-alertmanager-Collector-Version")) {
+            if (!rc.getHeaders().containsKey("X-compliancemanager-Collector-Version")) {
                 super.filter(rc);
             }
         } catch (BadRequestException badRequestException) {

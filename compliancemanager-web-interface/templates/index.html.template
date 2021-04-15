@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html<% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>>
+  <head>
+    <meta charset="UTF-8">
+    <title><%=htmlWebpackPlugin.options.title || 'Webpack App'%></title>
+    <%= htmlWebpackPlugin.tags.headTags %>
+  </head>
+  <body>
+    <script src="/config.js"></script>
+    <% for (var vendorChunk in htmlWebpackPlugin.options.vendorModule().files.js) { %>
+    <script src="/<%= htmlWebpackPlugin.options.vendorModule().files.js[vendorChunk] %>"></script>
+    <% } %>
+    <%= htmlWebpackPlugin.tags.bodyTags %>
+  </body>
+</html>

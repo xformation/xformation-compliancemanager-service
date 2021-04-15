@@ -45,29 +45,29 @@ public class LibratoMetricsFormatterTest {
         fakeStreamNames.put(id2.toString(), "lolano$therSTREAM");
         counter.incrementStream(id2);
 
-        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfalert-", new ArrayList<String>(), "", fakeStreamNames);
+        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfcompliance-", new ArrayList<String>(), "", fakeStreamNames);
 
         Map<String, Map<String,Object>> gauges = parseGauges(f.asJson());
 
         assertEquals(5, gauges.size());
 
-        assertEquals("xfalert-graylog2-server", gauges.get("xfalert-total").get("source"));
-        assertEquals((long) 2, gauges.get("xfalert-total").get("value"));
-        assertEquals((long) 3, gauges.get("xfalert-host-foo-example-org").get("value"));
-        assertEquals((long) 1, gauges.get("xfalert-host-bar-example-org").get("value"));
-        assertEquals((long) 2, gauges.get("xfalert-stream-lol-stream1").get("value"));
-        assertEquals((long) 1, gauges.get("xfalert-stream-lolanotherstream").get("value"));*/
+        assertEquals("xfcompliance-graylog2-server", gauges.get("xfcompliance-total").get("source"));
+        assertEquals((long) 2, gauges.get("xfcompliance-total").get("value"));
+        assertEquals((long) 3, gauges.get("xfcompliance-host-foo-example-org").get("value"));
+        assertEquals((long) 1, gauges.get("xfcompliance-host-bar-example-org").get("value"));
+        assertEquals((long) 2, gauges.get("xfcompliance-stream-lol-stream1").get("value"));
+        assertEquals((long) 1, gauges.get("xfcompliance-stream-lolanotherstream").get("value"));*/
     }
 
     @Test
     public void testAsJsonWithEmptyCounter() throws IOException {
         /*MessageCounterImpl counter = new MessageCounterImpl();
-        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfalert-", new ArrayList<String>(), "", new HashMap<String, String>());
+        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfcompliance-", new ArrayList<String>(), "", new HashMap<String, String>());
 
         Map<String, Map<String,Object>> gauges = parseGauges(f.asJson());
 
         assertEquals(1, gauges.size());
-        assertEquals((long) 0, gauges.get("xfalert-total").get("value"));*/
+        assertEquals((long) 0, gauges.get("xfcompliance-total").get("value"));*/
     }
 
     @Test
@@ -107,17 +107,17 @@ public class LibratoMetricsFormatterTest {
         streamFilter.add(id3.toString());
         streamFilter.add(new ObjectId().toString());
 
-        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfalert-", streamFilter, "", fakeStreamNames);
+        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfcompliance-", streamFilter, "", fakeStreamNames);
 
         Map<String, Map<String,Object>> gauges = parseGauges(f.asJson());
 
         assertEquals(4, gauges.size());
 
-        assertEquals("xfalert-graylog2-server", gauges.get("xfalert-total").get("source"));
-        assertEquals((long) 2, gauges.get("xfalert-total").get("value"));
-        assertEquals((long) 3, gauges.get("xfalert-host-foo-example-org").get("value"));
-        assertEquals((long) 1, gauges.get("xfalert-host-bar-example-org").get("value"));
-        assertEquals((long) 1, gauges.get("xfalert-stream-noname-" + id2.toString()).get("value"));*/
+        assertEquals("xfcompliance-graylog2-server", gauges.get("xfcompliance-total").get("source"));
+        assertEquals((long) 2, gauges.get("xfcompliance-total").get("value"));
+        assertEquals((long) 3, gauges.get("xfcompliance-host-foo-example-org").get("value"));
+        assertEquals((long) 1, gauges.get("xfcompliance-host-bar-example-org").get("value"));
+        assertEquals((long) 1, gauges.get("xfcompliance-stream-noname-" + id2.toString()).get("value"));*/
     }
 
     @Test
@@ -154,17 +154,17 @@ public class LibratoMetricsFormatterTest {
 
         String hostFilter = "^bar.*\\.example.org$";
 
-        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfalert-", new ArrayList<String>(), hostFilter, fakeStreamNames);
+        LibratoMetricsFormatter f = new LibratoMetricsFormatter(counter, "xfcompliance-", new ArrayList<String>(), hostFilter, fakeStreamNames);
 
         Map<String, Map<String,Object>> gauges = parseGauges(f.asJson());
 
         assertEquals(4, gauges.size());
 
-        assertEquals("xfalert-graylog2-server", gauges.get("xfalert-total").get("source"));
-        assertEquals(2L, gauges.get("xfalert-total").get("value"));
-        assertEquals(3L, gauges.get("xfalert-host-foo-example-org").get("value"));
-        assertEquals(2L, gauges.get("xfalert-stream-somestream").get("value"));
-        assertEquals(1L, gauges.get("xfalert-stream-somestream2").get("value"));*/
+        assertEquals("xfcompliance-graylog2-server", gauges.get("xfcompliance-total").get("source"));
+        assertEquals(2L, gauges.get("xfcompliance-total").get("value"));
+        assertEquals(3L, gauges.get("xfcompliance-host-foo-example-org").get("value"));
+        assertEquals(2L, gauges.get("xfcompliance-stream-somestream").get("value"));
+        assertEquals(1L, gauges.get("xfcompliance-stream-somestream2").get("value"));*/
     }
 
     private Map<String, Map<String,Object>> parseGauges(String json) throws IOException {

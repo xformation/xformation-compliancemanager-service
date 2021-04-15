@@ -72,7 +72,7 @@ public class MetricsHistoryResource extends RestResource {
         }
         andQuery.put("$and", obj);
 
-        final DBCollection dbCollection = mongoConnection.getDatabase().getCollection("alertmanager2_metrics");
+        final DBCollection dbCollection = mongoConnection.getDatabase().getCollection("compliancemanager2_metrics");
         try(DBCursor cursor = dbCollection.find(andQuery).sort(new BasicDBObject("timestamp", 1))) {
             final Map<String, Object> metricsData = Maps.newHashMap();
             metricsData.put("name", metricName);

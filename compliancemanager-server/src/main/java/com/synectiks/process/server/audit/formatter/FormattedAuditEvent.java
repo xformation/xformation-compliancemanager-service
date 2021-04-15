@@ -14,8 +14,8 @@ public interface FormattedAuditEvent {
      *
      * Examples:
      *
-     *    {@code urn:alertmanager:user:jane}
-     *    {@code urn:alertmanager:node:28164cbe-4ad9-4c9c-a76e-088655aa7889}
+     *    {@code urn:compliancemanager:user:jane}
+     *    {@code urn:compliancemanager:node:28164cbe-4ad9-4c9c-a76e-088655aa7889}
      *
      * @return the actor URN
      */
@@ -24,7 +24,7 @@ public interface FormattedAuditEvent {
     /**
      * The audit event namespace.
      *
-     * Each plugin should have its own, unique namespace. The alertmanager server namespace is {@code server}.
+     * Each plugin should have its own, unique namespace. The compliancemanager server namespace is {@code server}.
      *
      * @return namespace string
      */
@@ -35,9 +35,9 @@ public interface FormattedAuditEvent {
      *
      * Examples:
      *
-     *   {@code urn:alertmanager:dashboard:56f2fdefa0275b357744230c:widget:57ab37cc67d0cb54582d43a0}
-     *   {@code urn:alertmanager:message_input:56f2fdefa0275b357744230c}
-     *   {@code urn:alertmanager:pipeline-rule:57ab37cc67d0cb54582d43a0}
+     *   {@code urn:compliancemanager:dashboard:56f2fdefa0275b357744230c:widget:57ab37cc67d0cb54582d43a0}
+     *   {@code urn:compliancemanager:message_input:56f2fdefa0275b357744230c}
+     *   {@code urn:compliancemanager:pipeline-rule:57ab37cc67d0cb54582d43a0}
      *
      * @return the object URN
      */

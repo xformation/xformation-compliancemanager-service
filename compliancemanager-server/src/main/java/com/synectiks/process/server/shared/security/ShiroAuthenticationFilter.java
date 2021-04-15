@@ -34,14 +34,14 @@ public class ShiroAuthenticationFilter implements ContainerRequestFilter {
                     context.loginSubject();
                 } catch (LockedAccountException e) {
                     LOG.debug("Unable to authenticate user, account is locked.", e);
-                    throw new NotAuthorizedException(e, "Basic realm=\"alertmanager Server\"");
+                    throw new NotAuthorizedException(e, "Basic realm=\"compliancemanager Server\"");
                 } catch (AuthenticationException e) {
                     LOG.debug("Unable to authenticate user.", e);
-                    throw new NotAuthorizedException(e, "Basic realm=\"alertmanager Server\"");
+                    throw new NotAuthorizedException(e, "Basic realm=\"compliancemanager Server\"");
                 }
             }
         } else {
-            throw new NotAuthorizedException("Basic realm=\"alertmanager Server\"");
+            throw new NotAuthorizedException("Basic realm=\"compliancemanager Server\"");
         }
 
     }

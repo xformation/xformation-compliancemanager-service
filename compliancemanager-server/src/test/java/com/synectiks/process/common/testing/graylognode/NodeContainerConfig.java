@@ -30,8 +30,8 @@ public class NodeContainerConfig {
         this.elasticsearchUri = elasticsearchUri;
         this.elasticsearchVersion = elasticsearchVersion;
         this.extraPorts = extraPorts == null ? new int[0] : extraPorts;
-        this.enableDebugging = flagFromEnvVar("ALERTMANAGER_IT_DEBUG_SERVER");
-        this.skipPackaging = flagFromEnvVar("ALERTMANAGER_IT_SKIP_PACKAGING");
+        this.enableDebugging = flagFromEnvVar("COMPLIANCEMANAGER_IT_DEBUG_SERVER");
+        this.skipPackaging = flagFromEnvVar("COMPLIANCEMANAGER_IT_SKIP_PACKAGING");
     }
 
     private static boolean flagFromEnvVar(String flagName) {

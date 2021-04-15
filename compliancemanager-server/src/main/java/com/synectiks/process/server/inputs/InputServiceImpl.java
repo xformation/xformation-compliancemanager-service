@@ -202,7 +202,7 @@ public class InputServiceImpl extends PersistedServiceImpl implements InputServi
 
         final DBObject o = findOne(InputImpl.class, new BasicDBObject("$and", query));
         if (o == null) {
-            throw new NotFoundException("Couldn't find input " + id + " on alertmanager node " + nodeId);
+            throw new NotFoundException("Couldn't find input " + id + " on compliancemanager node " + nodeId);
         } else {
             return new InputImpl((ObjectId) o.get(InputImpl.FIELD_ID), o.toMap());
         }

@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
- * Helper class to hold configuration of alertmanager
+ * Helper class to hold configuration of compliancemanager
  */
 @SuppressWarnings("FieldMayBeFinal")
 public class Configuration extends BaseConfiguration {
@@ -57,7 +57,7 @@ public class Configuration extends BaseConfiguration {
     private int outputBufferProcessorKeepAliveTime = 5000;
 
     @Parameter(value = "node_id_file", validator = NodeIdFileValidator.class)
-    private String nodeIdFile = "/opt/alertmanager/node/node-id";
+    private String nodeIdFile = "/opt/compliancemanager/node/node-id";
 
     @Parameter(value = "root_username")
     private String rootUsername = "admin";

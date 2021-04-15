@@ -60,7 +60,7 @@ public class LinkFieldDecorator implements SearchResponseDecorator {
 
     public static class Descriptor extends SearchResponseDecorator.Descriptor {
         public Descriptor() {
-            super("Hyperlink String", "http://docs.alertmanager.org/", "Hyperlink string");
+            super("Hyperlink String", "http://docs.compliancemanager.org/", "Hyperlink string");
         }
     }
 

@@ -1,5 +1,5 @@
 window.appConfig = {
-  xfalertServerUrl: '${serverUri}',
-  xfalertAppPathPrefix: '${appPathPrefix}',
+  xfcomplianceServerUrl: '${serverUri}',
+  xfcomplianceAppPathPrefix: '${appPathPrefix}',
   rootTimeZone: '${rootTimeZone}',
 };

@@ -58,12 +58,12 @@ public class MigrationHelpers {
                 final Role savedRole = roleService.save(fixedRole);
                 return savedRole.getId();
             } catch (DuplicateKeyException | ValidationException e) {
-                LOG.error("Unable to save fixed '" + roleName + "' role, please restart alertmanager to fix this.", e);
+                LOG.error("Unable to save fixed '" + roleName + "' role, please restart compliancemanager to fix this.", e);
             }
         }
 
         if (previousRole == null) {
-            LOG.error("Unable to access fixed '" + roleName + "' role, please restart alertmanager to fix this.");
+            LOG.error("Unable to access fixed '" + roleName + "' role, please restart compliancemanager to fix this.");
             return null;
         }
 
@@ -99,12 +99,12 @@ public class MigrationHelpers {
             try {
                 return userService.save(fixedUser);
             } catch (ValidationException e) {
-                LOG.error("Unable to save fixed '" + userName + "' user, please restart alertmanager to fix this.", e);
+                LOG.error("Unable to save fixed '" + userName + "' user, please restart compliancemanager to fix this.", e);
             }
         }
 
         if (previousUser == null) {
-            LOG.error("Unable to access fixed '" + userName + "' user, please restart alertmanager to fix this.");
+            LOG.error("Unable to access fixed '" + userName + "' user, please restart compliancemanager to fix this.");
             return null;
         }
 

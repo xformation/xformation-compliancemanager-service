@@ -38,7 +38,7 @@ public class GRNRegistry {
     }
 
     /**
-     * Returns a registry that has been initialized with the builtin alertmanager GRN types.
+     * Returns a registry that has been initialized with the builtin compliancemanager GRN types.
      *
      * @return the registry
      */

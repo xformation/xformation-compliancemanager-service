@@ -28,14 +28,14 @@ import java.nio.file.Path;
 public class HttpConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(HttpConfiguration.class);
 
-    private static final int ALERTMANAGER_DEFAULT_PORT = 9000;
+    private static final int COMPLIANCEMANAGER_DEFAULT_PORT = 9000;
 
-    public static final String OVERRIDE_HEADER = "X-alertmanager-Server-URL";
+    public static final String OVERRIDE_HEADER = "X-compliancemanager-Server-URL";
     public static final String PATH_WEB = "";
     public static final String PATH_API = "api/";
 
     @Parameter(value = "http_bind_address", required = true)
-    private HostAndPort httpBindAddress = HostAndPort.fromParts("127.0.0.1", ALERTMANAGER_DEFAULT_PORT);
+    private HostAndPort httpBindAddress = HostAndPort.fromParts("127.0.0.1", COMPLIANCEMANAGER_DEFAULT_PORT);
 
     @Parameter(value = "http_publish_uri", validator = URIAbsoluteValidator.class)
     private URI httpPublishUri;
@@ -73,7 +73,7 @@ public class HttpConfiguration {
     public HostAndPort getHttpBindAddress() {
         return httpBindAddress
                 .requireBracketsForIPv6()
-                .withDefaultPort(ALERTMANAGER_DEFAULT_PORT);
+                .withDefaultPort(COMPLIANCEMANAGER_DEFAULT_PORT);
     }
 
     public String getUriScheme() {
@@ -102,7 +102,7 @@ public class HttpConfiguration {
                 LOG.warn("\"{}\" is not a valid setting for \"http_publish_uri\". Using default <{}>.", httpPublishUri, defaultHttpUri);
                 return defaultHttpUri;
             } else {
-                return Tools.normalizeURI(httpPublishUri, httpPublishUri.getScheme(), ALERTMANAGER_DEFAULT_PORT, httpPublishUri.getPath());
+                return Tools.normalizeURI(httpPublishUri, httpPublishUri.getScheme(), COMPLIANCEMANAGER_DEFAULT_PORT, httpPublishUri.getPath());
             }
         }
     }
@@ -126,7 +126,7 @@ public class HttpConfiguration {
                     LOG.debug("Using loopback address {}", guessedAddress);
                 }
             } catch (Exception e) {
-                LOG.error("Could not guess primary network address for \"http_publish_uri\". Please configure it in your alertmanager configuration.", e);
+                LOG.error("Could not guess primary network address for \"http_publish_uri\". Please configure it in your compliancemanager configuration.", e);
                 throw new ParameterException("No http_publish_uri.", e);
             }
 

@@ -12,8 +12,8 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 public class EventOriginContextTest {
     @Test
     public void elasticsearchMessage() {
-        assertThat(EventOriginContext.elasticsearchMessage("alertmanager_0", "b5e53442-12bb-4374-90ed-c325c0d979ce"))
-                .isEqualTo("urn:alertmanager:message:es:alertmanager_0:b5e53442-12bb-4374-90ed-c325c0d979ce");
+        assertThat(EventOriginContext.elasticsearchMessage("compliancemanager_0", "b5e53442-12bb-4374-90ed-c325c0d979ce"))
+                .isEqualTo("urn:compliancemanager:message:es:compliancemanager_0:b5e53442-12bb-4374-90ed-c325c0d979ce");
 
         assertThatCode(() -> EventOriginContext.elasticsearchMessage("", "b5e53442-12bb-4374-90ed-c325c0d979ce"))
                 .hasMessageContaining("indexName")
@@ -22,18 +22,18 @@ public class EventOriginContextTest {
                 .hasMessageContaining("indexName")
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatCode(() -> EventOriginContext.elasticsearchMessage("alertmanager_0", ""))
+        assertThatCode(() -> EventOriginContext.elasticsearchMessage("compliancemanager_0", ""))
                 .hasMessageContaining("messageId")
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatCode(() -> EventOriginContext.elasticsearchMessage("alertmanager_0", null))
+        assertThatCode(() -> EventOriginContext.elasticsearchMessage("compliancemanager_0", null))
                 .hasMessageContaining("messageId")
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void elasticsearchEvent() {
-        assertThat(EventOriginContext.elasticsearchEvent("xfalert-events_0", "01DF13GB094MT6390TYQB2Q73Q"))
-                .isEqualTo("urn:alertmanager:event:es:xfalert-events_0:01DF13GB094MT6390TYQB2Q73Q");
+        assertThat(EventOriginContext.elasticsearchEvent("xfcompliance-events_0", "01DF13GB094MT6390TYQB2Q73Q"))
+                .isEqualTo("urn:compliancemanager:event:es:xfcompliance-events_0:01DF13GB094MT6390TYQB2Q73Q");
 
         assertThatCode(() -> EventOriginContext.elasticsearchEvent("", "01DF13GB094MT6390TYQB2Q73Q"))
                 .hasMessageContaining("indexName")
@@ -42,10 +42,10 @@ public class EventOriginContextTest {
                 .hasMessageContaining("indexName")
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatCode(() -> EventOriginContext.elasticsearchEvent("xfalert-events_0", ""))
+        assertThatCode(() -> EventOriginContext.elasticsearchEvent("xfcompliance-events_0", ""))
                 .hasMessageContaining("eventId")
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatCode(() -> EventOriginContext.elasticsearchEvent("xfalert-events_0", null))
+        assertThatCode(() -> EventOriginContext.elasticsearchEvent("xfcompliance-events_0", null))
                 .hasMessageContaining("eventId")
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -57,12 +57,12 @@ public class EventOriginContextTest {
 
     @Test
     public void parseShortESContext() {
-        assertThat(EventOriginContext.parseESContext("urn:alertmanager:message:es:ind")).isEmpty();
+        assertThat(EventOriginContext.parseESContext("urn:compliancemanager:message:es:ind")).isEmpty();
     }
 
     @Test
     public void parseMessageESContext() {
-        assertThat(EventOriginContext.parseESContext("urn:alertmanager:message:es:index-42:01DF13GB094MT6390TYQB2Q73Q"))
+        assertThat(EventOriginContext.parseESContext("urn:compliancemanager:message:es:index-42:01DF13GB094MT6390TYQB2Q73Q"))
                 .isPresent()
                 .get()
                 .satisfies(context -> {
@@ -73,7 +73,7 @@ public class EventOriginContextTest {
 
     @Test
     public void parseEventESContext() {
-        assertThat(EventOriginContext.parseESContext("urn:alertmanager:event:es:index-42:01DF13GB094MT6390TYQB2Q73Q"))
+        assertThat(EventOriginContext.parseESContext("urn:compliancemanager:event:es:index-42:01DF13GB094MT6390TYQB2Q73Q"))
                 .isPresent()
                 .get()
                 .satisfies(context -> {

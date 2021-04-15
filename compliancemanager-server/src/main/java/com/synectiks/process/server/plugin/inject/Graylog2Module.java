@@ -228,7 +228,7 @@ public abstract class Graylog2Module extends AbstractModule {
         installInput(inputMapBinder, target, factoryClass);
     }
 
-    // This should only be used by plugins that have been built before alertmanager 3.0.1.
+    // This should only be used by plugins that have been built before compliancemanager 3.0.1.
     // See comments in MessageOutput.Factory and MessageOutput.Factory2 for details
     protected MapBinder<String, MessageOutput.Factory<? extends MessageOutput>> outputsMapBinder() {
         return MapBinder.newMapBinder(binder(),
@@ -237,7 +237,7 @@ public abstract class Graylog2Module extends AbstractModule {
                 });
     }
 
-    // This should only be used by plugins that have been built before alertmanager 3.0.1.
+    // This should only be used by plugins that have been built before compliancemanager 3.0.1.
     // See comments in MessageOutput.Factory and MessageOutput.Factory2 for details
     protected <T extends MessageOutput> void installOutput(MapBinder<String, MessageOutput.Factory<? extends MessageOutput>> outputMapBinder,
                                                            Class<T> target,

@@ -9,10 +9,10 @@ public class InputMatcher implements StreamRuleMatcher {
 
     @Override
     public boolean match(Message msg, StreamRule rule) {
-       if(msg.getField(Message.FIELD_XFALERT_SOURCE_INPUT) == null) {
+       if(msg.getField(Message.FIELD_XFCOMPLIANCE_SOURCE_INPUT) == null) {
            return rule.getInverted();
        }
-        final String value = msg.getField(Message.FIELD_XFALERT_SOURCE_INPUT).toString();
+        final String value = msg.getField(Message.FIELD_XFCOMPLIANCE_SOURCE_INPUT).toString();
         return rule.getInverted() ^ value.trim().equalsIgnoreCase(rule.getValue());
     }
 }

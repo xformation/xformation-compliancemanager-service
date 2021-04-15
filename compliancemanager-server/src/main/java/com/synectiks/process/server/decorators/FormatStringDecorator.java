@@ -74,7 +74,7 @@ public class FormatStringDecorator implements SearchResponseDecorator {
 
     public static class Descriptor extends SearchResponseDecorator.Descriptor {
         public Descriptor() {
-            super("Format String", "http://docs.alertmanager.org/", "Format string");
+            super("Format String", "http://docs.compliancemanager.org/", "Format string");
         }
     }
 

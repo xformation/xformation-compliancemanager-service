@@ -47,7 +47,7 @@ public abstract class SearchesClusterConfig {
             .build();
     private static final Set<String> DEFAULT_SURROUNDING_FILTER_FIELDS = ImmutableSet.<String>builder()
             .add("source")
-            .add(Message.FIELD_XFALERT_SOURCE_INPUT)
+            .add(Message.FIELD_XFCOMPLIANCE_SOURCE_INPUT)
             .add("file")
             .add("source_file")
             .build();

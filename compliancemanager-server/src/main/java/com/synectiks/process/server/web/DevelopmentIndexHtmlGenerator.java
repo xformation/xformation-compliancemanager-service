@@ -40,7 +40,7 @@ public class DevelopmentIndexHtmlGenerator implements IndexHtmlGenerator {
     @Override
     public String get(MultivaluedMap<String, String> headers) {
         final Map<String, Object> model = ImmutableMap.<String, Object>builder()
-                .put("title", "alertmanager DEVELOPMENT Web Interface")
+                .put("title", "compliancemanager DEVELOPMENT Web Interface")
                 .put("appPrefix", RestTools.buildExternalUri(headers, httpConfiguration.getHttpExternalUri()))
                 .build();
         return templateEngine.transform(getTemplate(), model);

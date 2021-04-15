@@ -62,7 +62,7 @@ public abstract class IndexMapping implements IndexMappingTemplate {
     private Map<String, Map<String, Object>> internalFieldsMapping() {
         return ImmutableMap.of("internal_fields",
                 ImmutableMap.of(
-                        "match", "xfalert_*",
+                        "match", "xfcompliance_*",
                         "match_mapping_type", "string",
                         "mapping", notAnalyzedString())
         );
@@ -85,9 +85,9 @@ public abstract class IndexMapping implements IndexMappingTemplate {
                 // http://joda-time.sourceforge.net/api-release/org/joda/time/format/DateTimeFormat.html
                 // http://www.elasticsearch.org/guide/reference/mapping/date-format.html
                 .put("timestamp", typeTimeWithMillis())
-                .put(Message.FIELD_XFALERT_ACCOUNTED_MESSAGE_SIZE, typeLong())
-                .put(Message.FIELD_XFALERT_RECEIVE_TIMESTAMP, typeTimeWithMillis())
-                .put(Message.FIELD_XFALERT_PROCESSING_TIMESTAMP, typeTimeWithMillis())
+                .put(Message.FIELD_XFCOMPLIANCE_ACCOUNTED_MESSAGE_SIZE, typeLong())
+                .put(Message.FIELD_XFCOMPLIANCE_RECEIVE_TIMESTAMP, typeTimeWithMillis())
+                .put(Message.FIELD_XFCOMPLIANCE_PROCESSING_TIMESTAMP, typeTimeWithMillis())
                 // to support wildcard searches in source we need to lowercase the content (wildcard search lowercases search term)
                 .put("source", analyzedString("analyzer_keyword", true))
                 .put("streams", notAnalyzedString())

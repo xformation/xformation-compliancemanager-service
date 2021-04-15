@@ -16,17 +16,17 @@ public class EnterpriseMetadataSummary extends PluginMetadataSummary {
 
     @Override
     public String name() {
-        return "alertmanager Enterprise";
+        return "compliancemanager Enterprise";
     }
 
     @Override
     public String author() {
-        return "alertmanager, Inc.";
+        return "compliancemanager, Inc.";
     }
 
     @Override
     public URI url() {
-        return URI.create("https://www.alertmanager.org/enterprise");
+        return URI.create("https://www.compliancemanager.org/enterprise");
     }
 
     @Override
@@ -36,7 +36,7 @@ public class EnterpriseMetadataSummary extends PluginMetadataSummary {
 
     @Override
     public String description() {
-        return "alertmanager Enterprise";
+        return "compliancemanager Enterprise";
     }
 
     @Override

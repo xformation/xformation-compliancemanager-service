@@ -45,10 +45,10 @@ public class V20180212165000_AddDefaultCollectors extends Migration {
         removeConfigPath();
 
         final String beatsPreambel =
-                "# Needed for alertmanager\n" +
+                "# Needed for compliancemanager\n" +
                 "fields_under_root: true\n" +
                 "fields.collector_node_id: ${sidecar.nodeName}\n" +
-                "fields.xfalert_source_collector: ${sidecar.nodeId}\n\n";
+                "fields.xfcompliance_source_collector: ${sidecar.nodeId}\n\n";
 
         ensureCollector(
                 "filebeat",
@@ -66,22 +66,22 @@ public class V20180212165000_AddDefaultCollectors extends Migration {
                         "output.logstash:\n" +
                         "   hosts: [\"192.168.1.1:5044\"]\n" +
                         "path:\n" +
-                        "  data: /var/lib/alertmanager-sidecar/collectors/filebeat/data\n" +
-                        "  logs: /var/lib/alertmanager-sidecar/collectors/filebeat/log"
+                        "  data: /var/lib/compliancemanager-sidecar/collectors/filebeat/data\n" +
+                        "  logs: /var/lib/compliancemanager-sidecar/collectors/filebeat/log"
         );
         ensureCollector(
                 "winlogbeat",
                 "svc",
                 "windows",
-                "C:\\Program Files\\alertmanager\\sidecar\\winlogbeat.exe",
+                "C:\\Program Files\\compliancemanager\\sidecar\\winlogbeat.exe",
                 "-c \"%s\"",
                 "test config -c \"%s\"",
                 beatsPreambel +
                         "output.logstash:\n" +
                         "   hosts: [\"192.168.1.1:5044\"]\n" +
                         "path:\n" +
-                        "  data: C:\\Program Files\\alertmanager\\sidecar\\cache\\winlogbeat\\data\n" +
-                        "  logs: C:\\Program Files\\alertmanager\\sidecar\\logs\n" +
+                        "  data: C:\\Program Files\\compliancemanager\\sidecar\\cache\\winlogbeat\\data\n" +
+                        "  logs: C:\\Program Files\\compliancemanager\\sidecar\\logs\n" +
                         "tags:\n" +
                         " - windows\n" +
                         "winlogbeat:\n" +
@@ -143,8 +143,8 @@ public class V20180212165000_AddDefaultCollectors extends Migration {
                         "\tPort 12201\n" +
                         "\tOutputType  GELF_TCP\n" +
                         "\t<Exec>\n" +
-                        "\t  # These fields are needed for alertmanager\n" +
-                        "\t  $xfalert_source_collector = '${sidecar.nodeId}';\n" +
+                        "\t  # These fields are needed for compliancemanager\n" +
+                        "\t  $xfcompliance_source_collector = '${sidecar.nodeId}';\n" +
                         "\t  $collector_node_id = '${sidecar.nodeName}';\n" +
                         "\t</Exec>\n" +
                         "</Output>\n" +
@@ -225,8 +225,8 @@ public class V20180212165000_AddDefaultCollectors extends Migration {
                         "\tPort 12201\n" +
                         "\tOutputType  GELF_TCP\n" +
                         "\t<Exec>\n" +
-                        "\t  # These fields are needed for alertmanager\n" +
-                        "\t  $xfalert_source_collector = '${sidecar.nodeId}';\n" +
+                        "\t  # These fields are needed for compliancemanager\n" +
+                        "\t  $xfcompliance_source_collector = '${sidecar.nodeId}';\n" +
                         "\t  $collector_node_id = '${sidecar.nodeName}';\n" +
                         "\t</Exec>\n" +
                         "</Output>\n" +
@@ -244,15 +244,15 @@ public class V20180212165000_AddDefaultCollectors extends Migration {
                 "filebeat",
                 "svc",
                 "windows",
-                "C:\\Program Files\\alertmanager\\sidecar\\filebeat.exe",
+                "C:\\Program Files\\compliancemanager\\sidecar\\filebeat.exe",
                 "-c \"%s\"",
                 "test config -c \"%s\"",
                 beatsPreambel +
                         "output.logstash:\n" +
                         "   hosts: [\"192.168.1.1:5044\"]\n" +
                         "path:\n" +
-                        "  data: C:\\Program Files\\alertmanager\\sidecar\\cache\\filebeat\\data\n" +
-                        "  logs: C:\\Program Files\\alertmanager\\sidecar\\logs\n" +
+                        "  data: C:\\Program Files\\compliancemanager\\sidecar\\cache\\filebeat\\data\n" +
+                        "  logs: C:\\Program Files\\compliancemanager\\sidecar\\logs\n" +
                         "tags:\n" +
                         " - windows\n" +
                         "filebeat.inputs:\n" +
@@ -309,12 +309,12 @@ public class V20180212165000_AddDefaultCollectors extends Migration {
             try {
                 return collectorService.save(newCollector).id();
             } catch (Exception e) {
-                LOG.error("Can't save collector " + collectorName + ", please restart alertmanager to fix this.", e);
+                LOG.error("Can't save collector " + collectorName + ", please restart compliancemanager to fix this.", e);
             }
         }
 
         if (collector == null) {
-            LOG.error("Unable to access fixed " + collectorName + " collector, please restart alertmanager to fix this.");
+            LOG.error("Unable to access fixed " + collectorName + " collector, please restart compliancemanager to fix this.");
             return null;
         }
 

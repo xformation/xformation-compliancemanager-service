@@ -21,7 +21,7 @@ public class ElasticsearchConfiguration {
 
     @Deprecated // Should be removed in Graylog 3.0
     @Parameter(value = "elasticsearch_index_prefix", required = true)
-    private String indexPrefix = "alertmanager";
+    private String indexPrefix = "compliancemanager";
 
     @Deprecated // Should be removed in Graylog 3.0
     @Parameter(value = "elasticsearch_max_number_of_indices", required = true, validator = PositiveIntegerValidator.class)
@@ -53,7 +53,7 @@ public class ElasticsearchConfiguration {
 
     @Deprecated // Should be removed in Graylog 3.0
     @Parameter(value = "elasticsearch_template_name")
-    private String templateName = "alertmanager-internal";
+    private String templateName = "compliancemanager-internal";
 
     @Parameter(value = "no_retention")
     private boolean noRetention = false;
@@ -84,10 +84,10 @@ public class ElasticsearchConfiguration {
     private Duration indexFieldTypePeriodicalInterval = Duration.hours(1L);
 
     @Parameter(value = DEFAULT_EVENTS_INDEX_PREFIX, validators = StringNotBlankValidator.class)
-    private String defaultEventsIndexPrefix = "xfalert-events";
+    private String defaultEventsIndexPrefix = "xfcompliance-events";
 
     @Parameter(value = DEFAULT_SYSTEM_EVENTS_INDEX_PREFIX, validators = StringNotBlankValidator.class)
-    private String defaultSystemEventsIndexPrefix = "xfalert-system-events";
+    private String defaultSystemEventsIndexPrefix = "xfcompliance-system-events";
 
     public boolean isDisableVersionCheck() {
         return disableVersionCheck;

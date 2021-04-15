@@ -13,7 +13,7 @@ public interface PluginPermissions {
     Set<Permission> readerBasePermissions();
 
     /**
-     * A set of built-in roles that should be added to every alertmanager setup.
+     * A set of built-in roles that should be added to every compliancemanager setup.
      * @return The roles that this plugin provides
      */
     default Set<BuiltinRole> builtinRoles() {

@@ -8,7 +8,7 @@ public enum DocsHelper {
     PAGE_ES_CONFIGURATION("configuration/elasticsearch.html"),
     PAGE_ES_VERSIONS("configuration/elasticsearch.html#elasticsearch-versions");
 
-    private static final String DOCS_URL = "http://docs.alertmanager.org/en/";
+    private static final String DOCS_URL = "http://docs.compliancemanager.org/en/";
 
     private final String path;
 

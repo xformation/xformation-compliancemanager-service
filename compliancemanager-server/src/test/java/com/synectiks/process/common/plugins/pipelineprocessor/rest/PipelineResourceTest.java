@@ -55,10 +55,10 @@ public class PipelineResourceTest {
     @Test
     public void shouldParseAPipelineSuccessfully() {
         final PipelineSource pipelineSource = PipelineSource.builder()
-                .source("pipeline \"alertmanager Git Pipline\"\nstage 0 match either\n" +
+                .source("pipeline \"compliancemanager Git Pipline\"\nstage 0 match either\n" +
                         "rule \"geo loc of dev\"\nrule \"open source dev\"\nend")
                 .stages(Collections.emptyList())
-                .title("alertmanager Git Pipeline")
+                .title("compliancemanager Git Pipeline")
                 .build();
         final SortedSet stages = ImmutableSortedSet.of(
                 Stage.builder()
@@ -73,7 +73,7 @@ public class PipelineResourceTest {
                 ))
         );
         final Pipeline pipeline = Pipeline.builder()
-                .name("alertmanager Git Pipeline")
+                .name("compliancemanager Git Pipeline")
                 .stages(stages)
                 .build();
 
@@ -91,7 +91,7 @@ public class PipelineResourceTest {
         final PipelineSource pipelineSource = PipelineSource.builder()
                 .source("foo")
                 .stages(Collections.emptyList())
-                .title("alertmanager Git Pipeline")
+                .title("compliancemanager Git Pipeline")
                 .build();
 
         when(pipelineRuleParser.parsePipeline(pipelineSource.id(), pipelineSource.source()))

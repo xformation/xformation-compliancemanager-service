@@ -93,7 +93,7 @@ public class FreeEnterpriseService {
             final Response<FreeLicenseAPIResponse> response = apiClient.requestFreeLicense(apiRequest).execute();
 
             if (response.isSuccessful() && response.body() != null) {
-                LOG.debug("Received free alertmanager Enterprise license: {}", response.body());
+                LOG.debug("Received free compliancemanager Enterprise license: {}", response.body());
                 final StagedFreeEnterpriseLicense dto = StagedFreeEnterpriseLicense.builder()
                         .clusterId(clusterId)
                         .license(response.body().licenseString())
@@ -105,21 +105,21 @@ public class FreeEnterpriseService {
                 eventBus.post(dto);
             } else {
                 if (response.errorBody() != null) {
-                    LOG.error("Couldn't request free alertmanager Enterprise license: {} (code={})", response.errorBody().string(), response.code());
+                    LOG.error("Couldn't request free compliancemanager Enterprise license: {} (code={})", response.errorBody().string(), response.code());
                 } else {
-                    LOG.error("Couldn't request free alertmanager Enterprise license: {} (code={}, message=\"{}\")", response.message(), response.code(), response.message());
+                    LOG.error("Couldn't request free compliancemanager Enterprise license: {} (code={}, message=\"{}\")", response.message(), response.code(), response.message());
                 }
-                throw new FreeLicenseRequestException("Couldn't request free alertmanager Enterprise license", request);
+                throw new FreeLicenseRequestException("Couldn't request free compliancemanager Enterprise license", request);
             }
         } catch (FreeLicenseRequestException e) {
             // no need to log this again
             throw e;
         } catch (IOException e) {
-            LOG.error("Couldn't request free alertmanager Enterprise license from remote service", e);
-            throw new FreeLicenseRequestException("Couldn't request free alertmanager Enterprise license from remote service", request, e);
+            LOG.error("Couldn't request free compliancemanager Enterprise license from remote service", e);
+            throw new FreeLicenseRequestException("Couldn't request free compliancemanager Enterprise license from remote service", request, e);
         } catch (Exception e) {
-            LOG.error("Couldn't request free alertmanager Enterprise license", e);
-            throw new FreeLicenseRequestException("Couldn't request free alertmanager Enterprise license", request, e);
+            LOG.error("Couldn't request free compliancemanager Enterprise license", e);
+            throw new FreeLicenseRequestException("Couldn't request free compliancemanager Enterprise license", request, e);
         }
     }
 }

@@ -77,7 +77,7 @@ public class IndicesResource extends RestResource {
         checkPermission(RestPermissions.INDICES_READ, index);
 
         if (!indexSetRegistry.isManagedIndex(index)) {
-            final String msg = "Index [" + index + "] doesn't look like an index managed by alertmanager.";
+            final String msg = "Index [" + index + "] doesn't look like an index managed by compliancemanager.";
             LOG.info(msg);
             throw new NotFoundException(msg);
         }
@@ -109,7 +109,7 @@ public class IndicesResource extends RestResource {
     @GET
     @Path("/open")
     @Timed
-    @ApiOperation(value = "Get information of all open indices managed by alertmanager and their shards.")
+    @ApiOperation(value = "Get information of all open indices managed by compliancemanager and their shards.")
     @RequiresPermissions(RestPermissions.INDICES_READ)
     @Produces(MediaType.APPLICATION_JSON)
     public OpenIndicesInfo open() {
@@ -174,7 +174,7 @@ public class IndicesResource extends RestResource {
         checkPermission(RestPermissions.INDICES_CHANGESTATE, index);
 
         if (!indexSetRegistry.isManagedIndex(index)) {
-            final String msg = "Index [" + index + "] doesn't look like an index managed by alertmanager.";
+            final String msg = "Index [" + index + "] doesn't look like an index managed by compliancemanager.";
             LOG.info(msg);
             throw new NotFoundException(msg);
         }
@@ -195,7 +195,7 @@ public class IndicesResource extends RestResource {
         checkPermission(RestPermissions.INDICES_CHANGESTATE, index);
 
         if (!indexSetRegistry.isManagedIndex(index)) {
-            final String msg = "Index [" + index + "] doesn't look like an index managed by alertmanager.";
+            final String msg = "Index [" + index + "] doesn't look like an index managed by compliancemanager.";
             LOG.info(msg);
             throw new NotFoundException(msg);
         }
@@ -220,7 +220,7 @@ public class IndicesResource extends RestResource {
         checkPermission(RestPermissions.INDICES_DELETE, index);
 
         if (!indexSetRegistry.isManagedIndex(index)) {
-            final String msg = "Index [" + index + "] doesn't look like an index managed by alertmanager.";
+            final String msg = "Index [" + index + "] doesn't look like an index managed by compliancemanager.";
             LOG.info(msg);
             throw new NotFoundException(msg);
         }
@@ -246,7 +246,7 @@ public class IndicesResource extends RestResource {
     @GET
     @Path("/{indexSetId}/open")
     @Timed
-    @ApiOperation(value = "Get information of all open indices managed by alertmanager and their shards.")
+    @ApiOperation(value = "Get information of all open indices managed by compliancemanager and their shards.")
     @RequiresPermissions(RestPermissions.INDICES_READ)
     @Produces(MediaType.APPLICATION_JSON)
     public OpenIndicesInfo indexSetOpen(@ApiParam(name = "indexSetId") @PathParam("indexSetId") String indexSetId) {

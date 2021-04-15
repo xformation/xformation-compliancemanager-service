@@ -367,7 +367,7 @@ public class DBJobTriggerService {
      * <p></p>
      * This method will release all triggers that are locked by the calling node. It should be called before starting
      * the scheduler service on the current node to release all triggers that might be in a stale
-     * {@link JobTriggerStatus#RUNNING RUNNING} status after an unclean JVM or alertmanager server shutdown.
+     * {@link JobTriggerStatus#RUNNING RUNNING} status after an unclean JVM or compliancemanager server shutdown.
      *
      * @return number of released triggers
      */

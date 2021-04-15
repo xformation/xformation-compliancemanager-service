@@ -20,7 +20,7 @@ public class InputMatcherTest extends MatcherTest {
         rule.setValue("input-id-beef");
 
         Message msg = getSampleMessage();
-        msg.addField(Message.FIELD_XFALERT_SOURCE_INPUT, "input-id-beef");
+        msg.addField(Message.FIELD_XFCOMPLIANCE_SOURCE_INPUT, "input-id-beef");
 
         StreamRuleMatcher matcher = getMatcher(rule);
         assertTrue(matcher.match(msg, rule));
@@ -32,7 +32,7 @@ public class InputMatcherTest extends MatcherTest {
         rule.setValue("input-id-dead");
 
         Message msg = getSampleMessage();
-        msg.addField(Message.FIELD_XFALERT_SOURCE_INPUT, "input-id-beef");
+        msg.addField(Message.FIELD_XFCOMPLIANCE_SOURCE_INPUT, "input-id-beef");
 
         StreamRuleMatcher matcher = getMatcher(rule);
         assertFalse(matcher.match(msg, rule));
@@ -56,7 +56,7 @@ public class InputMatcherTest extends MatcherTest {
         rule.setInverted(true);
 
         Message msg = getSampleMessage();
-        msg.addField(Message.FIELD_XFALERT_SOURCE_INPUT, "input-id-beef");
+        msg.addField(Message.FIELD_XFCOMPLIANCE_SOURCE_INPUT, "input-id-beef");
 
         StreamRuleMatcher matcher = getMatcher(rule);
         assertFalse(matcher.match(msg, rule));
@@ -69,7 +69,7 @@ public class InputMatcherTest extends MatcherTest {
         rule.setInverted(true);
 
         Message msg = getSampleMessage();
-        msg.addField(Message.FIELD_XFALERT_SOURCE_INPUT, "input-id-beef");
+        msg.addField(Message.FIELD_XFCOMPLIANCE_SOURCE_INPUT, "input-id-beef");
 
         StreamRuleMatcher matcher = getMatcher(rule);
         assertTrue(matcher.match(msg, rule));

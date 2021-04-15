@@ -49,7 +49,7 @@ public class Cluster {
     }
 
     /**
-     * Requests the cluster health for all indices managed by alertmanager. (default: alertmanager_*)
+     * Requests the cluster health for all indices managed by compliancemanager. (default: compliancemanager_*)
      *
      * @return the cluster health response
      */

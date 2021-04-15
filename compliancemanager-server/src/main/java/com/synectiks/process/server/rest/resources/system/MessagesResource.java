@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 @RequiresAuthentication
-@Api(value = "System/Messages", description = "Internal alertmanager messages")
+@Api(value = "System/Messages", description = "Internal compliancemanager messages")
 @Path("/system/messages")
 public class MessagesResource extends RestResource {
     private final SystemMessageService systemMessageService;
@@ -40,7 +40,7 @@ public class MessagesResource extends RestResource {
 
     @GET
     @Timed
-    @ApiOperation(value = "Get internal alertmanager system messages")
+    @ApiOperation(value = "Get internal compliancemanager system messages")
     @RequiresPermissions(RestPermissions.SYSTEMMESSAGES_READ)
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Object> all(@ApiParam(name = "page", value = "Page") @QueryParam("page") int page) {

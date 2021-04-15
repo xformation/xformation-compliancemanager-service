@@ -86,7 +86,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     java.util.List<com.synectiks.process.server.plugin.journal.JournalMessages.SourceNode> 
@@ -95,7 +95,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     com.synectiks.process.server.plugin.journal.JournalMessages.SourceNode getSourceNodes(int index);
@@ -103,7 +103,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     int getSourceNodesCount();
@@ -111,7 +111,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     java.util.List<? extends com.synectiks.process.server.plugin.journal.JournalMessages.SourceNodeOrBuilder> 
@@ -120,7 +120,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     com.synectiks.process.server.plugin.journal.JournalMessages.SourceNodeOrBuilder getSourceNodesOrBuilder(
@@ -419,7 +419,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     @java.lang.Override
@@ -430,7 +430,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     @java.lang.Override
@@ -442,7 +442,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     @java.lang.Override
@@ -453,7 +453,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     @java.lang.Override
@@ -464,7 +464,7 @@ public final class JournalMessages {
      * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
      *
      * <pre>
-     * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+     * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
      * </pre>
      */
     @java.lang.Override
@@ -1231,7 +1231,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       @java.lang.Override
@@ -1246,7 +1246,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       @java.lang.Override
@@ -1261,7 +1261,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       @java.lang.Override
@@ -1276,7 +1276,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder setSourceNodes(
@@ -1297,7 +1297,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder setSourceNodes(
@@ -1315,7 +1315,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder addSourceNodes(com.synectiks.process.server.plugin.journal.JournalMessages.SourceNode value) {
@@ -1335,7 +1335,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder addSourceNodes(
@@ -1356,7 +1356,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder addSourceNodes(
@@ -1374,7 +1374,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder addSourceNodes(
@@ -1392,7 +1392,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder addAllSourceNodes(
@@ -1411,7 +1411,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder clearSourceNodes() {
@@ -1428,7 +1428,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public Builder removeSourceNodes(int index) {
@@ -1445,7 +1445,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public com.synectiks.process.server.plugin.journal.JournalMessages.SourceNode.Builder getSourceNodesBuilder(
@@ -1456,7 +1456,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       @java.lang.Override
@@ -1471,7 +1471,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       @java.lang.Override
@@ -1487,7 +1487,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public com.synectiks.process.server.plugin.journal.JournalMessages.SourceNode.Builder addSourceNodesBuilder() {
@@ -1498,7 +1498,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public com.synectiks.process.server.plugin.journal.JournalMessages.SourceNode.Builder addSourceNodesBuilder(
@@ -1510,7 +1510,7 @@ public final class JournalMessages {
        * <code>repeated .com.synectiks.process.server.plugin.journal.SourceNode source_nodes = 6;</code>
        *
        * <pre>
-       * the list of alertmanager2 nodes which have handled the message (radios, servers) in receive order
+       * the list of compliancemanager2 nodes which have handled the message (radios, servers) in receive order
        * </pre>
        */
       public java.util.List<com.synectiks.process.server.plugin.journal.JournalMessages.SourceNode.Builder> 

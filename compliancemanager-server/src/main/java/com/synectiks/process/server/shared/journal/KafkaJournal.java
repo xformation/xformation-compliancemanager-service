@@ -282,7 +282,7 @@ public class KafkaJournal extends AbstractIdleService implements Journal {
         }
 
         // TODO add check for directory, etc
-        committedReadOffsetFile = new File(journalDirectory.toFile(), "alertmanager2-committed-read-offset");
+        committedReadOffsetFile = new File(journalDirectory.toFile(), "compliancemanager2-committed-read-offset");
         try {
             if (!committedReadOffsetFile.createNewFile()) {
                 final String line = Files.asCharSource(committedReadOffsetFile, StandardCharsets.UTF_8).readFirstLine();
@@ -353,7 +353,7 @@ public class KafkaJournal extends AbstractIdleService implements Journal {
             logRetentionCleaner = new LogRetentionCleaner();
         } catch (KafkaException e) {
             // most likely failed to grab lock
-            LOG.error("Unable to start alertmanager.", e);
+            LOG.error("Unable to start compliancemanager.", e);
             throw new RuntimeException(e);
         }
 
@@ -777,10 +777,10 @@ public class KafkaJournal extends AbstractIdleService implements Journal {
     }
 
     /**
-     * Returns the highest journal offset that has been writting to persistent storage by alertmanager.
+     * Returns the highest journal offset that has been writting to persistent storage by compliancemanager.
      * <p>
      * Every message at an offset prior to this one can be considered as processed and does not need to be held in
-     * the journal any longer. By default alertmanager will try to aggressively flush the journal to consume a smaller
+     * the journal any longer. By default compliancemanager will try to aggressively flush the journal to consume a smaller
      * amount of disk space.
      * </p>
      *

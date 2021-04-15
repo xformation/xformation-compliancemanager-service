@@ -95,7 +95,7 @@ public class GelfTcpTransport extends AbstractGelfTransport {
                             ch.pipeline().addLast(sslContext.newHandler(ch.alloc()));
                         }
 
-                        // The alertmanager2-server uses '\0'-bytes as delimiter for TCP frames.
+                        // The compliancemanager2-server uses '\0'-bytes as delimiter for TCP frames.
                         ch.pipeline().addLast(new GelfTcpFrameDelimiterEncoder());
                         // We cannot use GZIP encoding for TCP because the headers contain '\0'-bytes then.
                         ch.pipeline().addLast(new GelfMessageJsonEncoder());

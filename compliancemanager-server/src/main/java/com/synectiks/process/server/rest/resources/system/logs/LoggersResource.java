@@ -58,14 +58,14 @@ import java.util.Locale;
 import java.util.Map;
 
 @RequiresAuthentication
-@Api(value = "System/Loggers", description = "Internal alertmanager loggers")
+@Api(value = "System/Loggers", description = "Internal compliancemanager loggers")
 @Path("/system/loggers")
 public class LoggersResource extends RestResource {
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(LoggersResource.class);
-    private static final String MEMORY_APPENDER_NAME = "alertmanager-internal-logs";
+    private static final String MEMORY_APPENDER_NAME = "compliancemanager-internal-logs";
 
     private static final Map<String, Subsystem> SUBSYSTEMS = ImmutableMap.<String, Subsystem>of(
-            "alertmanager", new Subsystem("alertmanager", ImmutableList.of("com.synectiks.process.server", "com.synectiks.process.common"), "All messages from alertmanager-owned systems."),
+            "compliancemanager", new Subsystem("compliancemanager", ImmutableList.of("com.synectiks.process.server", "com.synectiks.process.common"), "All messages from compliancemanager-owned systems."),
             "indexer", new Subsystem("Indexer", "org.elasticsearch", "All messages related to indexing and searching."),
             "authentication", new Subsystem("Authentication", "org.apache.shiro", "All user authentication messages."),
             "sockets", new Subsystem("Sockets", "netty", "All messages related to socket communication."));

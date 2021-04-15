@@ -417,10 +417,10 @@ public class PipelineInterpreter implements MessageProcessor {
 
     private void appendProcessingError(Rule rule, Message message, String errorString) {
         final String msg = "For rule '" + rule.name() + "': " + errorString;
-        if (message.hasField(Message.FIELD_XFALERT_PROCESSING_ERROR)) {
-            message.addField(Message.FIELD_XFALERT_PROCESSING_ERROR, message.getFieldAs(String.class, Message.FIELD_XFALERT_PROCESSING_ERROR) + "," + msg);
+        if (message.hasField(Message.FIELD_XFCOMPLIANCE_PROCESSING_ERROR)) {
+            message.addField(Message.FIELD_XFCOMPLIANCE_PROCESSING_ERROR, message.getFieldAs(String.class, Message.FIELD_XFCOMPLIANCE_PROCESSING_ERROR) + "," + msg);
         } else {
-            message.addField(Message.FIELD_XFALERT_PROCESSING_ERROR, msg);
+            message.addField(Message.FIELD_XFCOMPLIANCE_PROCESSING_ERROR, msg);
         }
     }
 

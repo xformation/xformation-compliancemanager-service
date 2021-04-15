@@ -12,7 +12,7 @@ public class VersionCheckConfiguration {
     private boolean enabled = false;
     
     @Parameter(value = "versionchecks_uri")
-    private URI uri = URI.create("https://versioncheck.alertmanager.com/check");
+    private URI uri = URI.create("https://versioncheck.compliancemanager.com/check");
 
     public boolean isEnabled() {
         return enabled;

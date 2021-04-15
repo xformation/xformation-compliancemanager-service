@@ -86,7 +86,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@Command(name = "server", description = "Start the alertmanager server")
+@Command(name = "server", description = "Start the compliancemanager server")
 public class Server extends ServerBootstrap {
     private static final Logger LOG = LoggerFactory.getLogger(Server.class);
 
@@ -109,7 +109,7 @@ public class Server extends ServerBootstrap {
         super("server", configuration);
     }
 
-    @Option(name = {"-l", "--local"}, description = "Run alertmanager in local mode. Only interesting for alertmanager developers.")
+    @Option(name = {"-l", "--local"}, description = "Run compliancemanager in local mode. Only interesting for compliancemanager developers.")
     private boolean local = false;
 
     public boolean isLocal() {

@@ -152,7 +152,7 @@ public class AbsoluteSearchResource extends SearchResource {
             @ApiParam(name = "fields", value = "Comma separated list of fields to return", required = true)
             @QueryParam("fields") @NotEmpty String fields) {
         checkSearchPermission(filter, RestPermissions.SEARCHES_ABSOLUTE);
-        final String filename = "alertmanager-search-result-absolute-" + from + "-" + to + ".csv";
+        final String filename = "compliancemanager-search-result-absolute-" + from + "-" + to + ".csv";
         return Response
             .ok(searchAbsoluteChunked(query, from, to, limit, offset, batchSize, filter, fields))
             .header("Content-Disposition", "attachment; filename=" + filename)

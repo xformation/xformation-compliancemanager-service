@@ -314,7 +314,7 @@ public class JerseyService extends AbstractIdleService {
         listener.getTransport().setWorkerThreadPool(workerThreadPoolExecutor);
 
         // The Grizzly default value is equal to `Runtime.getRuntime().availableProcessors()` which doesn't make
-        // sense for alertmanager because we are not mainly a web server.
+        // sense for compliancemanager because we are not mainly a web server.
         // See "Selector runners count" at https://grizzly.java.net/bestpractices.html for details.
         listener.getTransport().setSelectorRunnersCount(selectorRunnersCount);
 

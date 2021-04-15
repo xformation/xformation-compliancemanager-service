@@ -124,10 +124,10 @@ public class ProcessBufferProcessor implements WorkHandler<MessageEvent> {
             messages = messageProcessor.process(messages);
         }
         for (Message message : messages) {
-            if (!message.hasField(Message.FIELD_XFALERT_MESSAGE_ID) || isNullOrEmpty(message.getFieldAs(String.class, Message.FIELD_XFALERT_MESSAGE_ID))) {
+            if (!message.hasField(Message.FIELD_XFCOMPLIANCE_MESSAGE_ID) || isNullOrEmpty(message.getFieldAs(String.class, Message.FIELD_XFCOMPLIANCE_MESSAGE_ID))) {
                 // Set the message ID once all message processors have finished
-                // See documentation of Message.FIELD_XFALERT_MESSAGE_ID for details
-                message.addField(Message.FIELD_XFALERT_MESSAGE_ID, ulid.nextULID());
+                // See documentation of Message.FIELD_XFCOMPLIANCE_MESSAGE_ID for details
+                message.addField(Message.FIELD_XFCOMPLIANCE_MESSAGE_ID, ulid.nextULID());
             }
 
             // The processing time should only be set once all message processors have finished

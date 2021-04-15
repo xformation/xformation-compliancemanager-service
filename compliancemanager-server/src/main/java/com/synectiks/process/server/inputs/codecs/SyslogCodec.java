@@ -140,7 +140,7 @@ public class SyslogCodec extends AbstractCodec {
         }
         if (e instanceof FortiGateSyslogEvent) {
             final HashMap<String, Object> fields = new HashMap<>(((FortiGateSyslogEvent) e).getFields());
-            // The FortiGate "level" field is a string, alertmanager requires a numeric value.
+            // The FortiGate "level" field is a string, compliancemanager requires a numeric value.
             fields.remove("level");
             m.addFields(fields);
         }

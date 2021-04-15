@@ -60,7 +60,7 @@ public class SystemResource extends RestResource {
         checkPermission(RestPermissions.SYSTEM_READ, serverStatus.getNodeId().toString());
 
 
-        return SystemOverviewResponse.create("alertmanager-server",
+        return SystemOverviewResponse.create("compliancemanager-server",
                 ServerVersion.CODENAME,
                 serverStatus.getNodeId().toString(),
                 clusterId.clusterId(),

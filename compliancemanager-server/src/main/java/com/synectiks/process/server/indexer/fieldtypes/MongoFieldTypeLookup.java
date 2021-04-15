@@ -71,14 +71,14 @@ public class MongoFieldTypeLookup implements FieldTypeLookup {
         //
         // [
         //   {
-        //     "index_name": "alertmanager_0",
+        //     "index_name": "compliancemanager_0",
         //     "fields": [
         //       {"field_name": "message", "physical_type": "text"},
         //       {"field_name": "source", "physical_type": "keyword"}
         //     ]
         //   },
         //   {
-        //     "index_name": "alertmanager_1",
+        //     "index_name": "compliancemanager_1",
         //     "fields": [
         //       {"field_name": "message", "physical_type": "text"},
         //     ]
@@ -94,7 +94,7 @@ public class MongoFieldTypeLookup implements FieldTypeLookup {
         //       {
         //         "type": "string",
         //         "properties": ["full-text-search"],
-        //         "index_names": ["alertmanager_0", "alertmanager_1"]
+        //         "index_names": ["compliancemanager_0", "compliancemanager_1"]
         //     ]
         //   },
         //   "source": {
@@ -103,7 +103,7 @@ public class MongoFieldTypeLookup implements FieldTypeLookup {
         //       {
         //         "type": "string",
         //         "properties": ["enumerable"],
-        //         "index_names": ["alertmanager_0"]
+        //         "index_names": ["compliancemanager_0"]
         //     ]
         //   }
         // }

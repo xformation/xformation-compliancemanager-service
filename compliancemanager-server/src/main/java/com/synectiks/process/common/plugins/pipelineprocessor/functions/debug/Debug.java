@@ -17,7 +17,7 @@ public class Debug extends AbstractFunction<Void> {
     public static final String NAME = "debug";
 
     Debug() {
-        valueParam = ParameterDescriptor.object("value").description("The value to print in the alertmanager-server log.").build();
+        valueParam = ParameterDescriptor.object("value").description("The value to print in the compliancemanager-server log.").build();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Debug extends AbstractFunction<Void> {
                 .name(NAME)
                 .returnType(Void.class)
                 .params(of(valueParam) )
-                .description("Print any passed value as string in the alertmanager-server log. Note that this will only appear in the " +
+                .description("Print any passed value as string in the compliancemanager-server log. Note that this will only appear in the " +
                         "log of the graylog-server node that is processing the message you are trying to debug.")
                 .build();
     }

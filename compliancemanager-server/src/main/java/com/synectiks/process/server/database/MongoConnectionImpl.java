@@ -79,7 +79,7 @@ public class MongoConnectionImpl implements MongoConnection {
 
         final Version mongoVersion = getMongoVersion(m.getDB("admin"));
         if (mongoVersion != null && mongoVersion.lessThan(MINIMUM_MONGODB_VERSION)) {
-            LOG.warn("You're running MongoDB {} but alertmanager requires at least MongoDB {}. Please upgrade.",
+            LOG.warn("You're running MongoDB {} but compliancemanager requires at least MongoDB {}. Please upgrade.",
                     mongoVersion, MINIMUM_MONGODB_VERSION);
         }
 

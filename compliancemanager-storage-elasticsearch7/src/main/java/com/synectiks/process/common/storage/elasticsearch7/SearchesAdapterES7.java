@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 import static com.google.common.base.MoreObjects.firstNonNull;
 
 public class SearchesAdapterES7 implements SearchesAdapter {
-    private static final String AGG_CARDINALITY = "xfalert_field_cardinality";
-    private static final String AGG_EXTENDED_STATS = "xfalert_extended_stats";
-    private static final String AGG_VALUE_COUNT = "xfalert_value_count";
+    private static final String AGG_CARDINALITY = "xfcompliance_field_cardinality";
+    private static final String AGG_EXTENDED_STATS = "xfcompliance_extended_stats";
+    private static final String AGG_VALUE_COUNT = "xfcompliance_value_count";
 
     private final ElasticsearchClient client;
     private final Scroll scroll;

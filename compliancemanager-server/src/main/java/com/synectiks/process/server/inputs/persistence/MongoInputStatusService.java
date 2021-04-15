@@ -74,7 +74,7 @@ public class MongoInputStatusService implements InputStatusService {
     /**
      * Clean up MongoDB records when Inputs are deleted
      *
-     * At the moment, alertmanager uses the InputDeleted event both when an Input is stopped
+     * At the moment, compliancemanager uses the InputDeleted event both when an Input is stopped
      * and when it is deleted.
      *
      * @param event ID of the input being deleted

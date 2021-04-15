@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-import static com.synectiks.process.server.plugin.Message.FIELD_XFALERT_MESSAGE_ID;
+import static com.synectiks.process.server.plugin.Message.FIELD_XFCOMPLIANCE_MESSAGE_ID;
 
 public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7 implements V20200730000000_AddGl2MessageIdFieldAliasForEvents.ElasticsearchAdapter {
 
@@ -30,13 +30,13 @@ public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7 implements V2
     }
 
     @Override
-    public void addXfAlertMessageIdFieldAlias(Set<String> indexPrefixes) {
+    public void addXfComplianceMessageIdFieldAlias(Set<String> indexPrefixes) {
 
         final String[] prefixesWithWildcard = indexPrefixes.stream().map(p -> p + "*").toArray(String[]::new);
 
         final PutMappingRequest putMappingRequest = new PutMappingRequest(prefixesWithWildcard)
                 .indicesOptions(IndicesOptions.LENIENT_EXPAND_OPEN_CLOSED)
-                .source(ImmutableMap.of("properties", ImmutableMap.of(FIELD_XFALERT_MESSAGE_ID, aliasMapping())));
+                .source(ImmutableMap.of("properties", ImmutableMap.of(FIELD_XFCOMPLIANCE_MESSAGE_ID, aliasMapping())));
 
         try {
             final AcknowledgedResponse acknowledgedResponse = client.execute((c, requestOptions) -> c.indices().putMapping(putMappingRequest, requestOptions));
@@ -49,7 +49,7 @@ public class V20200730000000_AddGl2MessageIdFieldAliasForEventsES7 implements V2
     }
 
     private String errorMsgFor(String[] prefixesWithWildcard) {
-        return "Failed to add field alias " + FIELD_XFALERT_MESSAGE_ID + " for indices " + Arrays.toString(prefixesWithWildcard) + ".";
+        return "Failed to add field alias " + FIELD_XFCOMPLIANCE_MESSAGE_ID + " for indices " + Arrays.toString(prefixesWithWildcard) + ".";
     }
 
     static LinkedHashMap<String, Object> aliasMapping() {

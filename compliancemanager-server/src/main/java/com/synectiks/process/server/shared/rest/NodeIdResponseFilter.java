@@ -23,6 +23,6 @@ public class NodeIdResponseFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
-        responseContext.getHeaders().add("X-alertmanager-Node-ID", nodeId.toString());
+        responseContext.getHeaders().add("X-compliancemanager-Node-ID", nodeId.toString());
     }
 }

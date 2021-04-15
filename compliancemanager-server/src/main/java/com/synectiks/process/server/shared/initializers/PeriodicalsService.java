@@ -44,7 +44,7 @@ public class PeriodicalsService extends AbstractIdleService {
                 periodical.initialize();
 
                 if (periodical.masterOnly() && !serverStatus.hasCapability(ServerStatus.Capability.MASTER)) {
-                    LOG.info("Not starting [{}] periodical. Only started on alertmanager master nodes.", periodical.getClass().getCanonicalName());
+                    LOG.info("Not starting [{}] periodical. Only started on compliancemanager master nodes.", periodical.getClass().getCanonicalName());
                     continue;
                 }
 

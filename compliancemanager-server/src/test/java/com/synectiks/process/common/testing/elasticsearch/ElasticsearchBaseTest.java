@@ -40,7 +40,7 @@ public abstract class ElasticsearchBaseTest {
     private static Map<String, Map<String, Object>> getGraylogDefaultMessageTemplates(Version version) {
         final Map<String, Object> template =
                 indexMappingFor(version).messageTemplate("*", "standard", -1);
-        return Collections.singletonMap("alertmanager-test-internal", template);
+        return Collections.singletonMap("compliancemanager-test-internal", template);
     }
 
     private void addIndexTemplates(Map<String, Map<String, Object>> templates) {

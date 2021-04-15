@@ -47,7 +47,7 @@ public class InMemorySearchJobServiceTest {
                 .registerModule(new Jdk8Module())
                 .registerModule(new JavaTimeModule())
                 .registerModule(new MetricsModule(TimeUnit.SECONDS, TimeUnit.SECONDS, false))
-                .registerModule(new SimpleModule("alertmanager")
+                .registerModule(new SimpleModule("compliancemanager")
                         .addKeyDeserializer(Period.class, new JodaTimePeriodKeyDeserializer())
                         .addSerializer(new RangeJsonSerializer())
                         .addSerializer(new SizeSerializer())

@@ -317,15 +317,15 @@ public abstract class SearchesIT extends ElasticsearchBaseTest {
 
     @Test
     public void determineAffectedIndicesWithRangesExcludeEvents() throws Exception {
-        final Set<IndexSet> eventIndexSets = Arrays.asList("xfalert-events", "xfalert-system-events").stream().
+        final Set<IndexSet> eventIndexSets = Arrays.asList("xfcompliance-events", "xfcompliance-system-events").stream().
                 map(prefix -> new TestIndexSet(indexSet.getConfig().toBuilder()
                         .indexPrefix(prefix)
                         .indexTemplateType(IndexSetConfig.TemplateType.EVENTS)
                         .build())).collect(Collectors.toSet());
         when(indexSetRegistry.getForIndices(anyCollection())).thenReturn(eventIndexSets);
         final DateTime now = DateTime.now(DateTimeZone.UTC);
-        final MongoIndexRange indexRange0 = MongoIndexRange.create("xfalert-events_0", now, now.plusDays(1), now, 0);
-        final MongoIndexRange indexRange1 = MongoIndexRange.create("xfalert-system-events_2", now.plusDays(1), now.plusDays(2), now, 0);
+        final MongoIndexRange indexRange0 = MongoIndexRange.create("xfcompliance-events_0", now, now.plusDays(1), now, 0);
+        final MongoIndexRange indexRange1 = MongoIndexRange.create("xfcompliance-system-events_2", now.plusDays(1), now.plusDays(2), now, 0);
         final MongoIndexRange indexRange2 = MongoIndexRange.create("graylog_0", now, now.plusDays(1), now, 0);
         final SortedSet<IndexRange> indices = ImmutableSortedSet.orderedBy(IndexRange.COMPARATOR)
                 .add(indexRange0)

@@ -116,7 +116,7 @@ public class Scroll implements RequestStrategy {
         // unfortunately `index` can only be set with the full constructor.
         // so we just use `null`/empty collections for the rest.
         // it's a bit messy, but this entire class should disappear once we manage to use
-        // search after with indices that are missing XFALERT_MESSAGE_ID
+        // search after with indices that are missing XFCOMPLIANCE_MESSAGE_ID
         //noinspection unchecked
         return new SearchResult(objectMapper).new Hit<Map, Void>(
                 Map.class, hit.get("_source"),

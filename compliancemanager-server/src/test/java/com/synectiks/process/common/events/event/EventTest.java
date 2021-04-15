@@ -29,7 +29,7 @@ public class EventTest {
                 .id("01DF119QKMPCR5VWBXS8783799")
                 .eventDefinitionType("aggregation-v1")
                 .eventDefinitionId("54e3deadbeefdeadbeefaffe")
-                .originContext("urn:alertmanager:message:es:alertmanager_0:199a616d-4d48-4155-b4fc-339b1c3129b2")
+                .originContext("urn:compliancemanager:message:es:compliancemanager_0:199a616d-4d48-4155-b4fc-339b1c3129b2")
                 .eventTimestamp(now)
                 .processingTimestamp(now)
                 .timerangeStart(now)
@@ -49,7 +49,7 @@ public class EventTest {
             assertThat(event.getId()).isEqualTo("01DF119QKMPCR5VWBXS8783799");
             assertThat(event.getEventDefinitionType()).isEqualTo("aggregation-v1");
             assertThat(event.getEventDefinitionId()).isEqualTo("54e3deadbeefdeadbeefaffe");
-            assertThat(event.getOriginContext()).isEqualTo("urn:alertmanager:message:es:alertmanager_0:199a616d-4d48-4155-b4fc-339b1c3129b2");
+            assertThat(event.getOriginContext()).isEqualTo("urn:compliancemanager:message:es:compliancemanager_0:199a616d-4d48-4155-b4fc-339b1c3129b2");
             assertThat(event.getEventTimestamp()).isEqualTo(now);
             assertThat(event.getProcessingTimestamp()).isEqualTo(now);
             assertThat(event.getTimerangeStart()).isEqualTo(now);

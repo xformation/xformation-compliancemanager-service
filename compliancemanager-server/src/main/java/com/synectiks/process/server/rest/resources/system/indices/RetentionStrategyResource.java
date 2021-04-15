@@ -60,7 +60,7 @@ public class RetentionStrategyResource extends RestResource {
     @Path("strategies")
     @Timed
     @ApiOperation(value = "List available retention strategies",
-            notes = "This resource returns a list of all available retention strategies on this alertmanager node.")
+            notes = "This resource returns a list of all available retention strategies on this compliancemanager node.")
     public RetentionStrategies list() {
         final Set<RetentionStrategyDescription> strategies = retentionStrategies.keySet()
                 .stream()

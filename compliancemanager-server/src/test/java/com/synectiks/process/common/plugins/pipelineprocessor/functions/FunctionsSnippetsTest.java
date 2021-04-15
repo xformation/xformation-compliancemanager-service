@@ -697,7 +697,7 @@ public class FunctionsSnippetsTest extends BaseParserTest {
         assertThat(clonedMessage.getSource()).isEqualTo(origMessage.getSource());
         assertThat(clonedMessage.getStreams()).isEqualTo(origMessage.getStreams());
         assertThat(clonedMessage.getTimestamp()).isNotNull();
-        assertThat(clonedMessage.getField("xfalert_original_timestamp")).isEqualTo(origMessage.getField("timestamp"));
+        assertThat(clonedMessage.getField("xfcompliance_original_timestamp")).isEqualTo(origMessage.getField("timestamp"));
     }
 
     @Test
@@ -729,12 +729,12 @@ public class FunctionsSnippetsTest extends BaseParserTest {
         assertThat(message.getField("host")).isEqualTo("some.host.with.lots.of.subdomains.com");
         assertThat(message.getField("port")).isEqualTo(9999);
         assertThat(message.getField("file")).isEqualTo(
-                "/path1/path2/three?q1=something&with_spaces=hello%20alertmanager&equal=can=containanotherone");
+                "/path1/path2/three?q1=something&with_spaces=hello%20compliancemanager&equal=can=containanotherone");
         assertThat(message.getField("fragment")).isEqualTo("anchorstuff");
         assertThat(message.getField("query")).isEqualTo(
-                "q1=something&with_spaces=hello%20alertmanager&equal=can=containanotherone");
+                "q1=something&with_spaces=hello%20compliancemanager&equal=can=containanotherone");
         assertThat(message.getField("q1")).isEqualTo("something");
-        assertThat(message.getField("with_spaces")).isEqualTo("hello alertmanager");
+        assertThat(message.getField("with_spaces")).isEqualTo("hello compliancemanager");
         assertThat(message.getField("equal")).isEqualTo("can=containanotherone");
         assertThat(message.getField("authority")).isEqualTo("admin:s3cr31@some.host.with.lots.of.subdomains.com:9999");
     }
@@ -794,7 +794,7 @@ public class FunctionsSnippetsTest extends BaseParserTest {
     @Test
     public void ipMatchingIssue28() {
         final Rule rule = parser.parseRule(ruleForTest(), false);
-        final Message in = new Message("some message", "somehost.alertmanager.org", Tools.nowUTC());
+        final Message in = new Message("some message", "somehost.compliancemanager.org", Tools.nowUTC());
         evaluateRule(rule, in);
 
         assertThat(actionsTriggered.get()).isFalse();
@@ -804,7 +804,7 @@ public class FunctionsSnippetsTest extends BaseParserTest {
     public void fieldRenaming() {
         final Rule rule = parser.parseRule(ruleForTest(), false);
 
-        final Message in = new Message("some message", "somehost.alertmanager.org", Tools.nowUTC());
+        final Message in = new Message("some message", "somehost.compliancemanager.org", Tools.nowUTC());
         in.addField("field_a", "fieldAContent");
         in.addField("field_b", "not deleted");
 
@@ -1057,7 +1057,7 @@ public class FunctionsSnippetsTest extends BaseParserTest {
         final Rule rule = parser.parseRule(ruleForTest(), true);
         evaluateRule(rule);
 
-        assertThat(metricRegistry.getCounters().get("org.alertmanager.rulemetrics.foo").getCount()).isEqualTo(42);
+        assertThat(metricRegistry.getCounters().get("org.compliancemanager.rulemetrics.foo").getCount()).isEqualTo(42);
     }
 
     @Test

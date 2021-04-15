@@ -69,7 +69,7 @@ public class V20161116172100_DefaultIndexSetMigration extends Migration {
 
         final IndexSetConfig config = IndexSetConfig.builder()
                 .title("Default index set")
-                .description("The alertmanager default index set")
+                .description("The compliancemanager default index set")
                 .indexPrefix(elasticsearchConfiguration.getIndexPrefix())
                 .shards(elasticsearchConfiguration.getShards())
                 .replicas(elasticsearchConfiguration.getReplicas())

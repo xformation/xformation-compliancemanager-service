@@ -48,7 +48,7 @@ public class LoadBalancerStatusResource extends RestResource {
     @GET
     @Timed
     @Produces(MediaType.TEXT_PLAIN)
-    @ApiOperation(value = "Get status of this alertmanager server node for load balancers. " +
+    @ApiOperation(value = "Get status of this compliancemanager server node for load balancers. " +
             "Returns ALIVE with HTTP 200, DEAD with HTTP 503, or THROTTLED with HTTP 429.")
     public Response status() {
         final LoadBalancerStatus lbStatus = serverStatus.getLifecycle().getLoadbalancerStatus();
@@ -75,7 +75,7 @@ public class LoadBalancerStatusResource extends RestResource {
     @RequiresAuthentication
     @RequiresPermissions(RestPermissions.LBSTATUS_CHANGE)
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Override load balancer status of this alertmanager server node. Next lifecycle " +
+    @ApiOperation(value = "Override load balancer status of this compliancemanager server node. Next lifecycle " +
             "change will override it again to its default. Set to ALIVE, DEAD, or THROTTLED.")
     @Path("/override/{status}")
     @AuditEvent(type = AuditEventTypes.LOAD_BALANCER_STATUS_UPDATE)

@@ -54,8 +54,8 @@ public abstract class ServerBootstrap extends CmdLineTool {
         this.commandName = commandName;
     }
 
-    @Option(name = {"-p", "--pidfile"}, description = "File containing the PID of alertmanager")
-    private String pidFile = TMPDIR + FILE_SEPARATOR + "alertmanager.pid";
+    @Option(name = {"-p", "--pidfile"}, description = "File containing the PID of compliancemanager")
+    private String pidFile = TMPDIR + FILE_SEPARATOR + "compliancemanager.pid";
 
     @Option(name = {"-np", "--no-pid-file"}, description = "Do not write a PID file (overrides -p/--pidfile)")
     private boolean noPidFile = false;
@@ -107,7 +107,7 @@ public abstract class ServerBootstrap extends CmdLineTool {
 
         final OS os = OS.getOs();
 
-        LOG.info("alertmanager {} {} starting up", commandName, version);
+        LOG.info("compliancemanager {} {} starting up", commandName, version);
         LOG.info("JRE: {}", systemInformation);
         LOG.info("Deployment: {}", configuration.getInstallationSource());
         LOG.info("OS: {}", os.getPlatformName());
@@ -152,14 +152,14 @@ public abstract class ServerBootstrap extends CmdLineTool {
             } catch (TimeoutException timeoutException) {
                 LOG.error("Unable to shutdown properly on time. {}", serviceManager.servicesByState());
             }
-            LOG.error("alertmanager startup failed. Exiting. Exception was:", e);
+            LOG.error("compliancemanager startup failed. Exiting. Exception was:", e);
             auditEventSender.failure(AuditActor.system(nodeId), NODE_STARTUP_INITIATE, auditEventContext);
             System.exit(-1);
         }
         LOG.info("Services started, startup times in ms: {}", serviceManager.startupTimes());
 
         activityWriter.write(new Activity("Started up.", Main.class));
-        LOG.info("alertmanager " + commandName + " up and running.");
+        LOG.info("compliancemanager " + commandName + " up and running.");
         auditEventSender.success(AuditActor.system(nodeId), NODE_STARTUP_COMPLETE, auditEventContext);
 
         // Block forever.

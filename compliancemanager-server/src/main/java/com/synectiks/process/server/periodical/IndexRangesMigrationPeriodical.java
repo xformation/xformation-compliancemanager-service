@@ -67,7 +67,7 @@ public class IndexRangesMigrationPeriodical extends Periodical {
     public void doRun() {
         final MongoIndexRangesMigrationComplete migrationComplete = clusterConfigService.get(MongoIndexRangesMigrationComplete.class);
         if (migrationComplete != null && migrationComplete.complete) {
-            LOG.debug("Migration of index ranges (pre alertmanager 1.2.2) already complete. Skipping migration process.");
+            LOG.debug("Migration of index ranges (pre compliancemanager 1.2.2) already complete. Skipping migration process.");
             return;
         }
 

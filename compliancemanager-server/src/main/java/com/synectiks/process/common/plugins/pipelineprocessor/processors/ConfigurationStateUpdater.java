@@ -99,7 +99,7 @@ public class ConfigurationStateUpdater {
     private static void setAllowCodeGeneration(Boolean allowCodeGeneration) {
         if (allowCodeGeneration && ToolProvider.getSystemJavaCompiler() == null) {
             log.warn("Your Java runtime does not have a compiler available, turning off dynamic " +
-                    "code generation. Please consider running alertmanager in a JDK, not a JRE, to " +
+                    "code generation. Please consider running compliancemanager in a JDK, not a JRE, to " +
                     "avoid a performance penalty in pipeline processing.");
             allowCodeGeneration = false;
         }

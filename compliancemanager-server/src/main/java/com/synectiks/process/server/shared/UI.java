@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 
 public class UI {
 
-    private static final String HELP_DOCS = "http://docs.alertmanager.org/";
-    private static final String HELP_COMMUNITY = "https://www.alertmanager.org/community-support/";
-    private static final String HELP_COMMERCIAL = "https://www.alertmanager.com/technical-support/";
+    private static final String HELP_DOCS = "http://docs.compliancemanager.org/";
+    private static final String HELP_COMMUNITY = "https://www.compliancemanager.org/community-support/";
+    private static final String HELP_COMMERCIAL = "https://www.compliancemanager.com/technical-support/";
 
     private static final Logger LOG = LoggerFactory.getLogger(UI.class);
 

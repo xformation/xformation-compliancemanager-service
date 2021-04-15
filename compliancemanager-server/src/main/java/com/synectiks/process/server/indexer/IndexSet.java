@@ -18,7 +18,7 @@ public interface IndexSet extends Comparable<IndexSet> {
     /**
      * Returns an array with all managed indices in this index set.
      * <p>
-     * Example: {@code ["alertmanager_0", "alertmanager_1", "alertmanager_2"]}
+     * Example: {@code ["compliancemanager_0", "compliancemanager_1", "compliancemanager_2"]}
      *
      * @return array of index names
      */
@@ -29,7 +29,7 @@ public interface IndexSet extends Comparable<IndexSet> {
      * <p>
      * The write index alias always points to the newest index.
      * <p>
-     * Example: {@code "alertmanager_deflector"}
+     * Example: {@code "compliancemanager_deflector"}
      *
      * @return the write index alias name
      */
@@ -40,7 +40,7 @@ public interface IndexSet extends Comparable<IndexSet> {
      * <p>
      * This can be used in Elasticsearch queries to match all managed indices in this index set.
      * <p>
-     * Example: {@code "alertmanager_*"}
+     * Example: {@code "compliancemanager_*"}
      *
      * @return the index wildcard
      */
@@ -49,7 +49,7 @@ public interface IndexSet extends Comparable<IndexSet> {
     /**
      * Returns the newest index.
      * <p>
-     * Example: {@code "alertmanager_42"}
+     * Example: {@code "compliancemanager_42"}
      *
      * @return the newest index
      * @throws NoTargetIndexException if there are no indices in this index set yet
@@ -61,7 +61,7 @@ public interface IndexSet extends Comparable<IndexSet> {
      * <p>
      * Incoming messages for this index set will be written into this index.
      * <p>
-     * Example: {@code "alertmanager_42"}
+     * Example: {@code "compliancemanager_42"}
      *
      * @return the active write index
      * @throws TooManyAliasesException if the write index alias points to more than one index
@@ -74,7 +74,7 @@ public interface IndexSet extends Comparable<IndexSet> {
      * <p>
      * Only the active write index should have an alias, the other values should be empty.
      * <p>
-     * Example: {@code {alertmanager_0=[], alertmanager_1=[], alertmanager_2=[alertmanager_deflector}}
+     * Example: {@code {compliancemanager_0=[], compliancemanager_1=[], compliancemanager_2=[compliancemanager_deflector}}
      *
      * @return map of index names to index aliases
      */
@@ -83,7 +83,7 @@ public interface IndexSet extends Comparable<IndexSet> {
     /**
      * Returns the index prefix for this index set.
      * <p>
-     * Example: {@code "alertmanager"}
+     * Example: {@code "compliancemanager"}
      *
      * @return index prefix for this index set
      */
@@ -142,7 +142,7 @@ public interface IndexSet extends Comparable<IndexSet> {
     /**
      * Extracts the index number from an index name.
      * <p>
-     * Example: {@code "alertmanager_42" => 42}
+     * Example: {@code "compliancemanager_42" => 42}
      *
      * @param index index name
      * @return a filled {@link Optional} with the extracted index number, an empty one if the number couldn't be parsed

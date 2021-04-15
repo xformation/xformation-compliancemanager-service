@@ -93,7 +93,7 @@ public class KafkaTransport extends ThrottleableTransport {
     );
 
     private static final String DEFAULT_OFFSET_RESET = "largest";
-    private static final String DEFAULT_GROUP_ID = "alertmanager2";
+    private static final String DEFAULT_GROUP_ID = "compliancemanager2";
 
     private static final Logger LOG = LoggerFactory.getLogger(KafkaTransport.class);
 
@@ -244,7 +244,7 @@ public class KafkaTransport extends ThrottleableTransport {
         public ConsumerRunnable(Properties props, MessageInput input, int threadId) {
             this.input = input;
             final Properties nprops = (Properties) props.clone();
-            nprops.put("client.id", "xfalert-" + nodeId + "-" + input.getId() + "-" + threadId);
+            nprops.put("client.id", "xfcompliance-" + nodeId + "-" + input.getId() + "-" + threadId);
             this.props = nprops;
             consumer = new KafkaConsumer<>(props);
             //noinspection ConstantConditions
@@ -336,7 +336,7 @@ public class KafkaTransport extends ThrottleableTransport {
         final Properties props = new Properties();
 
         props.put("group.id", configuration.getString(CK_GROUP_ID, DEFAULT_GROUP_ID));
-        props.put("client.id", "xfalert-" + nodeId + "-" + input.getId());
+        props.put("client.id", "xfcompliance-" + nodeId + "-" + input.getId());
 
         props.put("fetch.min.bytes", String.valueOf(configuration.getInt(CK_FETCH_MIN_BYTES)));
         props.put("fetch.wait.max.ms", String.valueOf(configuration.getInt(CK_FETCH_WAIT_MAX)));
@@ -502,7 +502,7 @@ public class KafkaTransport extends ThrottleableTransport {
             cr.addField(new BooleanField(CK_LEGACY,
                     "Legacy mode",
                     true,
-                    "Use old ZooKeeper-based consumer API. (Used before alertmanager 3.3)",
+                    "Use old ZooKeeper-based consumer API. (Used before compliancemanager 3.3)",
                     10
             ));
             cr.addField(new TextField(
@@ -566,7 +566,7 @@ public class KafkaTransport extends ThrottleableTransport {
                     CK_CUSTOM_PROPERTIES,
                     "Custom Kafka properties",
                     "",
-                    "A newline separated list of Kafka properties. (e.g.: \"ssl.keystore.location=/opt/alertmanager/kafka.keystore.jks\").",
+                    "A newline separated list of Kafka properties. (e.g.: \"ssl.keystore.location=/opt/compliancemanager/kafka.keystore.jks\").",
                     ConfigurationField.Optional.OPTIONAL,
                     ConfigurationField.PLACE_AT_END_POSITION,
                     TextField.Attribute.TEXTAREA

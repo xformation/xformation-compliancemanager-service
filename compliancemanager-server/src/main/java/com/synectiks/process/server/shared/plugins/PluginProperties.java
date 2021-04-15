@@ -17,8 +17,8 @@ import static java.util.Objects.requireNonNull;
 public class PluginProperties {
     private static final Logger LOG = LoggerFactory.getLogger(PluginProperties.class);
 
-    private static final String MANIFEST_ATTRIBUTE = "alertmanager-Plugin-Properties-Path";
-    private static final String GRAYLOG_PLUGIN_PROPERTIES = "alertmanager-plugin.properties";
+    private static final String MANIFEST_ATTRIBUTE = "compliancemanager-Plugin-Properties-Path";
+    private static final String GRAYLOG_PLUGIN_PROPERTIES = "compliancemanager-plugin.properties";
 
     private static final String PROPERTY_ISOLATED = "isolated";
     private static final String PROPERTY_ISOLATED_DEFAULT = "true";
@@ -30,10 +30,10 @@ public class PluginProperties {
     }
 
     /**
-     * Loads the alertmanager plugin properties file from the given JAR file.
+     * Loads the compliancemanager plugin properties file from the given JAR file.
      *
-     * The path to the properties file resource inside the JAR file is stored in the "alertmanager-Plugin-Properties-Path"
-     * attribute of the JAR manifest. (Example: {@code org.alertmanager.plugins.alertmanager-plugin-map-widget})
+     * The path to the properties file resource inside the JAR file is stored in the "compliancemanager-Plugin-Properties-Path"
+     * attribute of the JAR manifest. (Example: {@code org.compliancemanager.plugins.compliancemanager-plugin-map-widget})
      *
      * If the plugin properties file does not exist or cannot be found (like in older plugins) a default
      * {@link PluginProperties} object will be returned.

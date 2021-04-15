@@ -113,7 +113,7 @@ public class IndexRotationThread extends Periodical {
     protected void checkAndRepair(IndexSet indexSet) {
         if (!indexSet.isUp()) {
             if (indices.exists(indexSet.getWriteIndexAlias())) {
-                // Publish a notification if there is an *index* called alertmanager2_deflector
+                // Publish a notification if there is an *index* called compliancemanager2_deflector
                 Notification notification = notificationService.buildNow()
                         .addType(Notification.Type.DEFLECTOR_EXISTS_AS_INDEX)
                         .addSeverity(Notification.Severity.URGENT);

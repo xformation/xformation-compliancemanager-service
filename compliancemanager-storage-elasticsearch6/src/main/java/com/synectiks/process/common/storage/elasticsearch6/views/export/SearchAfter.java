@@ -27,7 +27,7 @@ import static com.synectiks.process.server.plugin.streams.Stream.DEFAULT_EVENT_S
 public class SearchAfter implements RequestStrategy {
     private static final Logger LOG = LoggerFactory.getLogger(SearchAfter.class);
 
-    static final String DEFAULT_TIEBREAKER_FIELD = Message.FIELD_XFALERT_MESSAGE_ID;
+    static final String DEFAULT_TIEBREAKER_FIELD = Message.FIELD_XFCOMPLIANCE_MESSAGE_ID;
     static final String EVENTS_TIEBREAKER_FIELD = Message.FIELD_ID;
 
     private final JestWrapper jestWrapper;

@@ -44,7 +44,7 @@ import java.util.concurrent.ExecutorService;
 import static javax.ws.rs.core.Response.Status.BAD_GATEWAY;
 
 @RequiresAuthentication
-@Api(value = "Cluster/Node/Metrics", description = "Cluster-wide Internal alertmanager node metrics")
+@Api(value = "Cluster/Node/Metrics", description = "Cluster-wide Internal compliancemanager node metrics")
 @Path("/cluster/{nodeId}/metrics")
 @Produces(MediaType.APPLICATION_JSON)
 public class ClusterNodeMetricsResource extends ProxiedResource {

@@ -147,7 +147,7 @@ public class RelativeSearchResource extends SearchResource {
             @ApiParam(name = "fields", value = "Comma separated list of fields to return", required = true)
             @QueryParam("fields") @NotEmpty String fields) {
         checkSearchPermission(filter, RestPermissions.SEARCHES_RELATIVE);
-        final String filename = "alertmanager-search-result-relative-" + range + ".csv";
+        final String filename = "compliancemanager-search-result-relative-" + range + ".csv";
         return Response
             .ok(searchRelativeChunked(query, range, limit, offset, batchSize, filter, fields))
             .header("Content-Disposition", "attachment; filename=" + filename)

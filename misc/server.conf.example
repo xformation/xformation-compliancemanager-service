@@ -666,12 +666,12 @@ proxied_requests_thread_pool_size = 32
 #processing_status_journal_write_rate_threshold = 1
 
 # Configures the prefix used for compliancemanager event indices
-# Default: xfalert-events
-#default_events_index_prefix = xfalert-events
+# Default: xfcompliance-events
+#default_events_index_prefix = xfcompliance-events
 
 # Configures the prefix used for compliancemanager system event indices
-# Default: xfalert-system-events
-#default_system_events_index_prefix = xfalert-system-events
+# Default: xfcompliance-system-events
+#default_system_events_index_prefix = xfcompliance-system-events
 
 # Automatically load content packs in "content_packs_dir" on the first start of Compliancemanager.
 #content_packs_loader_enabled = false

@@ -35,7 +35,7 @@ public class ClusterStatsResource extends RestResource {
     @GET
     @Timed
     @ApiOperation(value = "Cluster status information.",
-            notes = "This resource returns information about the alertmanager cluster.")
+            notes = "This resource returns information about the compliancemanager cluster.")
     public ClusterStats systemStats() {
         return clusterStatsService.clusterStats();
     }
