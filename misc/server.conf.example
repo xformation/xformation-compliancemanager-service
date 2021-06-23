@@ -102,7 +102,7 @@ plugin_dir = plugin
 # If the port is omitted, Compliancemanager will use port 9000 by default.
 #
 # Default: 127.0.0.1:7045
-http_bind_address = 100.81.3.27:7045
+http_bind_address = 100.64.108.25:7045
 #http_bind_address = [2001:db8::1]:7045
 
 #### HTTP publish URI
@@ -120,7 +120,7 @@ http_bind_address = 100.81.3.27:7045
 #
 # Default: http://$http_bind_address/
 #http_publish_uri = http://192.168.1.1:9000/
-http_publish_uri = http://100.81.3.27:7045/
+http_publish_uri = http://100.64.108.25:7045/
 
 #### External Compliancemanager URI
 #
